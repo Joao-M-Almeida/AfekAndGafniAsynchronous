@@ -2,6 +2,14 @@
 ## Eclipse
 #################
 
+
+
+# Added by me
+*.class
+
+
+
+
 *.pydevproject
 .project
 .metadata
