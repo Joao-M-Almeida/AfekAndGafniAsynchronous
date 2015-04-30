@@ -9,6 +9,17 @@ public class OrdinaryThread implements Runnable {
 
 	public void run() {
 		// TODO Auto-generated method stub
+		
+		/*
+		 * Wait for Candidate Message
+		 * 
+		 * Implement algorithm
+		 * 
+		 * 
+		 * 
+		 * 
+		 *
+		 */
 
 	}
 
