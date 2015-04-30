@@ -1,5 +1,6 @@
 package AfekAndGafni;
-#yolo
+#swag
+
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
