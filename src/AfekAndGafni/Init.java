@@ -38,72 +38,17 @@ public class Init {
         ProcessID aux_pid;
         ProcessID[] auxRequestSet;
 		// Start the receiving Thread		
-		/*for(i=0 ; i<NumberOfProcessesPerMachine ; i++){	
+		for(i=0 ; i<NumberOfProcessesPerMachine ; i++){	
 			aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;
 			aux_pid=new ProcessID(aux_int + 1);
-			auxRequestSet = generateRequestSet(NumberOfProcesses,aux_pid);
 //			System.out.println("Request set of :" + aux_pid);
 //			for(int g=0;g<auxRequestSet.length;g++)
 //				System.out.println(auxRequestSet[g]);
-            O[aux_int] = new OrdinaryThread(aux_pid,auxRequestSet,generateStubset(auxRequestSet, stub));
+            O[aux_int] = new OrdinaryThread(aux_pid);
             ot = new Thread(O[MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i]);
             ot.start();
-		}*/ 
+		}
 	}
-	
-	
-	
-	/*public static ProcessID[] generateRequestSet(int N_nodes , ProcessID p_i) {
-		int k = (int) Math.ceil(Math.sqrt(N_nodes));
-		ProcessID[] requestSet = new ProcessID[N_nodes];
-		int i = p_i.getId();
-		int line = (int) Math.ceil(i/(double)k);
-
-		int column = i % k;
-		int j,n;
-		if(column==0)
-			column=k;
-		j=column;
-//		System.out.println("column " + column);
-
-	//	System.out.println("column");
-		for(n=0; j<=N_nodes;j = j + k) {
-			if(j!=i) {
-//				System.out.println("Add " + j);
-				requestSet[n]=new ProcessID(j);
-				n++;
-			}			
-		}
-
-	//	System.out.println("line");
-		for(j=(line-1)*k+1;j<=k*line && j<=N_nodes;j++) {
-		//	if(j!=i) {
-		//		System.out.println("Add " + j);
-				requestSet[n]=new ProcessID(j);
-				n++;
-		//	}
-		}
-		for(i=0;i<requestSet.length;i++) 
-			if(requestSet[i]==null)
-				break;
-		
-		ProcessID[] finalRequestSet = new ProcessID[i];
-		for(i=0;i<finalRequestSet.length;i++) {
-			finalRequestSet[i]=requestSet[i];
-		}
-
-		return finalRequestSet;
-		
-	}*/
-	
-	/*public static MaekawaRemoteInterface[] generateStubset(ProcessID[] requestSet, MaekawaRemoteInterface[] allStubs) {
-		MaekawaRemoteInterface[] stubSet = new MaekawaRemoteInterface[requestSet.length];
-		for(int n=0;n<requestSet.length;n++) {
-			stubSet[n] = allStubs[requestSet[n].getId()-1];
-		}
-		return stubSet;
-	}*/
-	
 
 	public static void main(String args[]){
 		msgN=1;
