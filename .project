@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>AfekAndGafni</name>
+			<type>2</type>
+			<location>/Users/manuelemosr/Documents/TU Delft/Distributed Algorithms P3::4th Year 2015/Project/Code/AfekAndGafniAsynchronous/src/AfekAndGafni</location>
+		</link>
+	</linkedResources>
 </projectDescription>
