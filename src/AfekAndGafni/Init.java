@@ -158,7 +158,7 @@ public class Init {
 							//System.out.println(st);
 							//estub.printStackTrace();
 						} catch (Exception E){
-							E.printStackTrace();
+							E.printStackTrace();	
 							failed_lookup = true;
 							System.out.println(st);
 						} 		
