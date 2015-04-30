@@ -1,9 +1,5 @@
 package AfekAndGafni;
-#yolo2
-#swag
-conf
-cock
-
+sdalskdj
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -19,7 +15,7 @@ public class Init {
 	
 	public static String[] IPs;
 	public static Registry[] registry;
-	public static MaekawaRemoteInterface[] stub;
+	public static AfekAndGafniRMI[] stub;
 	public static int Process_Number;
 	public static int MachineNumber;
 	public static int NumberOfMachines;
@@ -34,6 +30,8 @@ public class Init {
 	public static OrdinaryThread[] O;
 	public static boolean[] requested;
 	
+	
+	// TODO Redo this create OThread
 	public static void createOThread(){
 		int i;
 		Thread ot;
@@ -41,7 +39,7 @@ public class Init {
         ProcessID aux_pid;
         ProcessID[] auxRequestSet;
 		// Start the receiving Thread		
-		for(i=0 ; i<NumberOfProcessesPerMachine ; i++){	
+		/*for(i=0 ; i<NumberOfProcessesPerMachine ; i++){	
 			aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;
 			aux_pid=new ProcessID(aux_int + 1);
 			auxRequestSet = generateRequestSet(NumberOfProcesses,aux_pid);
@@ -51,12 +49,12 @@ public class Init {
             O[aux_int] = new OrdinaryThread(aux_pid,auxRequestSet,generateStubset(auxRequestSet, stub));
             ot = new Thread(O[MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i]);
             ot.start();
-		}
+		}*/ 
 	}
 	
 	
 	
-	public static ProcessID[] generateRequestSet(int N_nodes , ProcessID p_i) {
+	/*public static ProcessID[] generateRequestSet(int N_nodes , ProcessID p_i) {
 		int k = (int) Math.ceil(Math.sqrt(N_nodes));
 		ProcessID[] requestSet = new ProcessID[N_nodes];
 		int i = p_i.getId();
@@ -97,15 +95,15 @@ public class Init {
 
 		return finalRequestSet;
 		
-	}
+	}*/
 	
-	public static MaekawaRemoteInterface[] generateStubset(ProcessID[] requestSet, MaekawaRemoteInterface[] allStubs) {
+	/*public static MaekawaRemoteInterface[] generateStubset(ProcessID[] requestSet, MaekawaRemoteInterface[] allStubs) {
 		MaekawaRemoteInterface[] stubSet = new MaekawaRemoteInterface[requestSet.length];
 		for(int n=0;n<requestSet.length;n++) {
 			stubSet[n] = allStubs[requestSet[n].getId()-1];
 		}
 		return stubSet;
-	}
+	}*/
 	
 
 	public static void main(String args[]){
@@ -124,7 +122,7 @@ public class Init {
 		MachineNumber = Integer.parseInt(args[NumberOfMachines+1]);
 		NumberOfProcesses = Integer.parseInt(args[NumberOfMachines+2])*NumberOfMachines;
 		NumberOfProcessesPerMachine = Integer.parseInt(args[NumberOfMachines+2]);
-		R = new ReceivingThread[NumberOfProcesses];
+		O = new OrdinaryThread[NumberOfProcesses];
 		
 		timestamp = new int[NumberOfProcesses];
 		
@@ -136,7 +134,7 @@ public class Init {
 		
 		IPs = new String[NumberOfMachines];
 		registry = new Registry[NumberOfMachines];
-		stub = new MaekawaRemoteInterface[NumberOfProcesses];
+		stub = new AfekAndGafniRMI[NumberOfProcesses];
 		
 		System.out.println("Use of arguments: [number of machines (n)] [ip_1]...[ip_n] [process number of the corresponding machine] [number of processes in each machine]");
 		
@@ -153,8 +151,8 @@ public class Init {
 			}
 			
 			// Create all the receiving threads and send them to the server class
-			Init.createRThread();
-			Server s = new Server(R);
+			Init.createOThread();
+			Server s = new Server(O);
 			new Thread(s).start();
 			System.out.print("Creating Server . .");
 			while(!s.server_rdy){
@@ -209,7 +207,7 @@ public class Init {
 						st=0;
 						try{
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
-							stub[st-1] = (MaekawaRemoteInterface) registry[i].lookup("rmi://localhost:1099/Process" + st);
+							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
 							System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
 						} catch (RemoteException estub) {
 							failed_lookup = true;
@@ -250,11 +248,13 @@ public class Init {
 			
 			ProcessID[] id_vect;
 			ProcessID id_g;
-			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
+			
+			// TODO Creation of CandidateThreads
+			/*for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
 				id_g = new ProcessID(MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i + 1);
 				id_vect = generateRequestSet(NumberOfProcesses,id_g);
 				new Thread(new RandomCSAcess(id_vect, generateStubset(id_vect, stub), id_g)).start();
-			}
+			}*/ 
 			
 			while(true){
 				Thread.sleep(1000);			

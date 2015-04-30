@@ -4,13 +4,13 @@ import java.rmi.RemoteException;
 
 
 
-public class RandomCSAcess implements Runnable {
+public class CandidateThread implements Runnable {
 
 	ProcessID[] requestSet;
 	AfekAndGafniRMI[] stubSet;
 	 ProcessID me;
 	 
-	public RandomCSAcess(ProcessID[] requestSet, AfekAndGafniRMI[] stubSet, ProcessID me) {
+	public CandidateThread(ProcessID[] requestSet, AfekAndGafniRMI[] stubSet, ProcessID me) {
 		this.requestSet = requestSet;
 		this.stubSet = stubSet;
 		this.me = me;

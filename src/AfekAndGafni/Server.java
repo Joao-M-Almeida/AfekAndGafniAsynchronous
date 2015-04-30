@@ -28,7 +28,7 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 	}
 	
 	
-	public Server() throws RemoteException{
+	public Server(OrdinaryThread[] o) throws RemoteException{
 		// TODO Setup do server, acrescentar ponteiros para a Thread Ordinária e o Candidato.
 	}
 
