@@ -2,6 +2,8 @@ package AfekAndGafni;
 #yolo2
 #swag
 conf
+cock
+
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
