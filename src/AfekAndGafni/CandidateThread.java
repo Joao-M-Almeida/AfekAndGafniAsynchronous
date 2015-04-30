@@ -6,46 +6,35 @@ import java.rmi.RemoteException;
 
 public class CandidateThread implements Runnable {
 
-	ProcessID[] requestSet;
 	AfekAndGafniRMI[] stubSet;
 	 ProcessID me;
 	 
-	public CandidateThread(ProcessID[] requestSet, AfekAndGafniRMI[] stubSet, ProcessID me) {
-		this.requestSet = requestSet;
+	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
+		
 		this.stubSet = stubSet;
 		this.me = me;
 	}
 	
 	public void run() {
-		System.out.println(me + " started random CS acess.");
-		while(true){
-			try {
-				
-					Thread.sleep((long)(Math.random() * 1000));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if(!Init.requested[me.getId()-1])
-				SendRequest();		
-			}
+		System.out.println(me + " started random wait for candidate");
+		
+		// Wait up to 10 seconds
+		try {
+			
+				Thread.sleep((long)(Math.random() * 10000));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// Start Candidate process
+		
+		Candidate();
+		
+		
 	}
 
-	private void SendRequest() {
-	/*	Init.R[me.getId()-1].nGrants=0;
-		int t = Init.timestamp[me.getId()-1];
+	private void Candidate() {
+		// TODO Auto-generated method stub
 		
-		System.out.println("                        " + me + " Requesting Acess" );
-		System.out.flush();
-		
-		for(int i=0;i<requestSet.length;i++) {
-			try {
-				stubSet[i].sendRequest(t, me, requestSet[i]);
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		Init.timestamp[me.getId()-1]++;
-		Init.requested[me.getId()-1]=true;*/
 	}
 
 }
