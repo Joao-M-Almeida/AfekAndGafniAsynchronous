@@ -1,9 +1,5 @@
 package AfekAndGafni;
 
-sdalskdj
-
-dsv
-
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
