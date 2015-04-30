@@ -14,7 +14,7 @@
 .project
 .metadata
 bin/
-bin/AfekAndGafni/*.class
+bin/AfekAndGafni/
 tmp/
 *.tmp
 *.bak
