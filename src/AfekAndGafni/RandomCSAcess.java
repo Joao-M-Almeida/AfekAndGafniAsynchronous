@@ -7,10 +7,10 @@ import java.rmi.RemoteException;
 public class RandomCSAcess implements Runnable {
 
 	ProcessID[] requestSet;
-	MaekawaRemoteInterface[] stubSet;
+	AfekAndGafniRMI[] stubSet;
 	 ProcessID me;
 	 
-	public RandomCSAcess(ProcessID[] requestSet, MaekawaRemoteInterface[] stubSet, ProcessID me) {
+	public RandomCSAcess(ProcessID[] requestSet, AfekAndGafniRMI[] stubSet, ProcessID me) {
 		this.requestSet = requestSet;
 		this.stubSet = stubSet;
 		this.me = me;
@@ -31,7 +31,7 @@ public class RandomCSAcess implements Runnable {
 	}
 
 	private void SendRequest() {
-		Init.R[me.getId()-1].nGrants=0;
+	/*	Init.R[me.getId()-1].nGrants=0;
 		int t = Init.timestamp[me.getId()-1];
 		
 		System.out.println("                        " + me + " Requesting Acess" );
@@ -45,7 +45,7 @@ public class RandomCSAcess implements Runnable {
 			}
 		}
 		Init.timestamp[me.getId()-1]++;
-		Init.requested[me.getId()-1]=true;
+		Init.requested[me.getId()-1]=true;*/
 	}
 
 }
