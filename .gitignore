@@ -13,8 +13,8 @@
 *.pydevproject
 .project
 .metadata
-bin/
-bin/AfekAndGafni/
+bin/*
+bin/AfekAndGafni/*
 tmp/
 *.tmp
 *.bak
