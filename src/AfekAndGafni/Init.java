@@ -1,5 +1,5 @@
 package AfekAndGafni;
-
+#YOLO
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -49,6 +49,8 @@ public class Init {
             ot.start();
 		}
 	}
+	
+	
 	
 	public static ProcessID[] generateRequestSet(int N_nodes , ProcessID p_i) {
 		int k = (int) Math.ceil(Math.sqrt(N_nodes));
