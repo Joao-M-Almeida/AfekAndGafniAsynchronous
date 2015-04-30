@@ -14,7 +14,7 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 		int i;
 		int j;
 		try {
-			MaekawaRemoteInterface stub = (MaekawaRemoteInterface) this;
+			AfekAndGafniRMI stub = (AfekAndGafniRMI) this; // changed from Maekawa to Afek's
 			Registry registry = LocateRegistry.createRegistry(1099);
 			for(i=0 ; i<Init.NumberOfProcessesPerMachine ; i++){
 				j = Init.MachineNumber*Init.NumberOfProcessesPerMachine - Init.NumberOfProcessesPerMachine + 1 + i;
@@ -27,44 +27,21 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 		} 
 	}
 	
-	private ReceivingThread[] rt;
 	
-	public Server(ReceivingThread[] rt) throws RemoteException{
-		this.rt=rt;
+	public Server() throws RemoteException{
+		// TODO Setup do server, acrescentar ponteiros para a Thread Ordinária e o Candidato.
 	}
 
-	 
-	public void sendRequest(int T, ProcessID From, ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Request",T,From);
-	}
-
-	 
-	public void sendGrant(ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Grant",-1, new ProcessID(-1));
+	public void sendToCandidate(ProcessID to, int level, ProcessID id)
+			throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 
-	 
-	public void sendInquire(ProcessID From, ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Inquire",-1,From);
-		
-	}
 
-	 
-	public void sendRelinquish(ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Relinquish",-1,new ProcessID(-1));
-		
-	}
-
-	 
-	public void sendRelease(ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Release",-1,new ProcessID(-1));
-		
-	}
-
-	 
-	public void sendPostponed(ProcessID To) throws RemoteException {
-		rt[To.getId()-1].incoming("Postponed",-1,new ProcessID(-1));
+	public void sendToOrdinary(ProcessID to, int level, ProcessID id)
+			throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 
