@@ -37,4 +37,9 @@ public class CandidateThread implements Runnable {
 		
 	}
 
+	public void receiveCandidateMessage(int level, ProcessID id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

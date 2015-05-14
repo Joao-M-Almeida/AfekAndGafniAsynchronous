@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import javax.swing.DebugGraphics;
 
+
 public class Init {
 	
 	public static String[] IPs;
@@ -25,26 +26,23 @@ public class Init {
 	
 	public static boolean DEBUG;
 	
-	public static OrdinaryThread[] O;
+	public static OrdinaryThread[] O; // Contains a pointer to the thread of each process on this machine. Process 1 on index 0
+	public static CandidateThread[] C;
 	public static boolean[] requested;
 	
 	
-	// TODO Redo this create OThread
+	// TODO Check if is working
 	public static void createOThread(){
-		int i;
+		int i,aux_int;
 		Thread ot;
-        int aux_int;
         ProcessID aux_pid;
-        ProcessID[] auxRequestSet;
 		// Start the receiving Thread		
 		for(i=0 ; i<NumberOfProcessesPerMachine ; i++){	
-			aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;
-			aux_pid=new ProcessID(aux_int + 1);
-//			System.out.println("Request set of :" + aux_pid);
-//			for(int g=0;g<auxRequestSet.length;g++)
-//				System.out.println(auxRequestSet[g]);
-            O[aux_int] = new OrdinaryThread(aux_pid);
-            ot = new Thread(O[MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i]);
+			// Iterates on the processes in this machine
+			aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i; // starts at 0
+			aux_pid=new ProcessID(aux_int + 1); 
+            O[aux_int] = new OrdinaryThread(aux_pid,stub); // Start a OT per Process
+            ot = new Thread(O[aux_int]);
             ot.start();
 		}
 	}
@@ -66,6 +64,7 @@ public class Init {
 		NumberOfProcesses = Integer.parseInt(args[NumberOfMachines+2])*NumberOfMachines;
 		NumberOfProcessesPerMachine = Integer.parseInt(args[NumberOfMachines+2]);
 		O = new OrdinaryThread[NumberOfProcesses];
+		C = new CandidateThread[NumberOfProcesses];
 		
 		timestamp = new int[NumberOfProcesses];
 		
@@ -93,9 +92,9 @@ public class Init {
 				i++;
 			}
 			
-			// Create all the receiving threads and send them to the server class
-			Init.createOThread();
-			Server s = new Server(O);
+			// Create all the OrdinaryCandidate threads and send them to the server class
+			Init.createOThread(); // Doesn't need to be here
+			Server s = new Server(O,C);
 			new Thread(s).start();
 			System.out.print("Creating Server . .");
 			while(!s.server_rdy){
@@ -149,6 +148,7 @@ public class Init {
 					while( true ){
 						st=0;
 						try{
+							// Para cada máquina, cria o stub para cada um dos processos.
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
 							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
 							System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
@@ -189,15 +189,16 @@ public class Init {
 		
 			System.out.println("Connections Ready");
 			
-			ProcessID[] id_vect;
-			ProcessID id_g;
 			
-			// TODO Creation of CandidateThreads
-			/*for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
-				id_g = new ProcessID(MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i + 1);
-				id_vect = generateRequestSet(NumberOfProcesses,id_g);
-				new Thread(new RandomCSAcess(id_vect, generateStubset(id_vect, stub), id_g)).start();
-			}*/ 
+			ProcessID id_g;
+			int aux_int;
+			// TODO Check if working: Creation of CandidateThreads
+			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
+				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;;
+				id_g = new ProcessID(aux_int + 1);
+				C[aux_int]=new CandidateThread(stub, id_g);
+				new Thread(C[aux_int]).start();
+			}
 			
 			while(true){
 				Thread.sleep(1000);			
