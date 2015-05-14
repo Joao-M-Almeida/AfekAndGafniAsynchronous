@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import javax.swing.DebugGraphics;
 
-
 public class Init {
 	
 	public static String[] IPs;
