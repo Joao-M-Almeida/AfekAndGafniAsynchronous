@@ -9,11 +9,16 @@ public class OrdinaryThread implements Runnable {
 	int OrdinaryLevel = 0;
 	ProcessID PotencialOwner;
 	ProcessID Owner = null;
+	ProcessID Owner_Id;
 	AfekAndGafniRMI[] Stubs;
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
 		this.Stubs = stub;
 		this.OrdinaryId = aux_pid;
+		this.Owner_Id = aux_pid;
+		
+		this.LevelList = new ArrayList<Integer>();
+		this.IdList = new ArrayList<ProcessID>();
 	}
 
 	public void run() {
@@ -34,17 +39,31 @@ public class OrdinaryThread implements Runnable {
 			LevelAux = this.RemoveElementLevel();
 			IdAux = this.RemoveElementId();
 			
-			if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < OrdinaryId.getId() ) ){
-				/* (level', id') < (level, id) */
+			if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
+				/* if (level', id') < (level, id) */
 				/* Ignore */
-			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > OrdinaryId.getId() ) ){
-				/* (level', id') < (level, id) */
-			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == OrdinaryId.getId() ){
-				/* (level', id') = (level, id) */
+				System.out.println("Lulz... Isto não devia ter acontecido brother, fizeste merda...");
+			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
+				/* if (level', id') < (level, id) */
+				PotencialOwner = IdAux;
+				/* (level, owner-id) = (level', id') */
+				OrdinaryLevel = LevelAux;
+				Owner_Id = IdAux;
+				if(Owner == null){
+					Owner = PotencialOwner;
+				}
+				SendToOwner(LevelAux, IdAux);
+				
+			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
+				/* if (level', id') = (level, id) */
 			}
 			
 		}
 
+	}
+	
+	public synchronized void SendToOwner(Integer Level, ProcessID id){
+		
 	}
 
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
