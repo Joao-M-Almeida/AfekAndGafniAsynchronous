@@ -1,5 +1,6 @@
 package AfekAndGafni;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class OrdinaryThread implements Runnable {
@@ -52,7 +53,7 @@ public class OrdinaryThread implements Runnable {
 				if(Owner == null){
 					Owner = PotencialOwner;
 				}
-				SendToOwner(LevelAux, IdAux);
+				SendToOwner(Owner, LevelAux, IdAux);
 				
 			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 				/* if (level', id') = (level, id) */
@@ -62,8 +63,13 @@ public class OrdinaryThread implements Runnable {
 
 	}
 	
-	public synchronized void SendToOwner(Integer Level, ProcessID id){
-		
+	public synchronized void SendToOwner(ProcessID Owner, Integer Level, ProcessID id){
+		try {
+			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return;
 	}
 
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
