@@ -2,7 +2,6 @@ package AfekAndGafni;
 
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -39,7 +38,6 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 
 	public void sendToCandidate(ProcessID to, int level, ProcessID id)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		C[to.getId()].receiveCandidateMessage(level,id);		
 		
 	}
@@ -47,7 +45,6 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 
 	public void sendToOrdinary(ProcessID to, int level, ProcessID id)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		O[to.getId()].receiveOrdinaryMessage(level,id);
 	}
 
