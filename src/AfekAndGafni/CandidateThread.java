@@ -10,12 +10,15 @@ public class CandidateThread implements Runnable {
 	ArrayList<Integer> LevelList;
 	ArrayList<ProcessID> IdList;
 	AfekAndGafniRMI[] stubSet;
-	 ProcessID me;
+	ArrayList<ProcessID> untraversed;
+	ProcessID me;
+	int myLevel;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		
 		this.stubSet = stubSet;
 		this.me = me;
+		untraversed= new ArrayList<ProcessID>();
 	}
 	
 	public void run() {
@@ -54,7 +57,24 @@ public class CandidateThread implements Runnable {
 	
 	private void Candidate() {
 		// TODO Auto-generated method stub
-		while(true){
+		myLevel=1;
+		for(int i=0;i<Init.NumberOfProcesses;i++) {
+			if((i+1)!=me.getId())
+				untraversed.add(new ProcessID(i+1));	
+		}
+		
+		ProcessID nextVictim;
+		while(!untraversed.isEmpty()){
+			nextVictim=untraversed.remove(0);
+			try {
+				if(Init.DEBUG)
+					System.out.println( me + " Sent Level: "+ myLevel + " to " +nextVictim );
+				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			
 			
 			Thread.yield();
 		}
@@ -62,6 +82,8 @@ public class CandidateThread implements Runnable {
 	}
 
 	public void receiveCandidateMessage(int level, ProcessID id) {
+		if(Init.DEBUG)
+			System.out.println( me + " Received Level: "+ level + " from " +id );
 		LevelList.add(level);
 		IdList.add(id);
 	}
