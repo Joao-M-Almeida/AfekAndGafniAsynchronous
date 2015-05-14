@@ -26,7 +26,7 @@ public class CandidateThread implements Runnable {
 			e.printStackTrace();
 		}
 		// Start Candidate process
-		
+		System.out.println(me + " started candidate");
 		Candidate();
 		
 		
