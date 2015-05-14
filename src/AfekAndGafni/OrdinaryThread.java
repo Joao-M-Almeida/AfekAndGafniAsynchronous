@@ -35,7 +35,7 @@ public class OrdinaryThread implements Runnable {
 				/* Ignore */
 			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux > OrdinaryId ) ){
 				/* (level', id') < (level, id) */
-			}else if( LevelAux == OrdinaryLevel && IdAux == OrdinaryId ) ){
+			}else if( LevelAux == OrdinaryLevel && IdAux == OrdinaryId ){
 				/* (level', id') = (level, id) */
 			}
 			
