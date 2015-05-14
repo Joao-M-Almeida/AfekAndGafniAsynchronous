@@ -11,7 +11,7 @@ public class Init {
 	public static String[] IPs;
 	public static Registry[] registry;
 	public static AfekAndGafniRMI[] stub;
-	public static int Process_Number;
+	//public static int Process_Number;
 	public static int MachineNumber;
 	public static int NumberOfMachines;
 	public static int NumberOfProcesses;
