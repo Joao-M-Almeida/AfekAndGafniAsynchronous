@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 public class OrdinaryThread implements Runnable {
 	ArrayList<Integer> LevelList;
-	ArrayList<Integer> IdList;
-	Integer OrdinaryId = Init.Process_Number;
-	Integer OrdinaryLevel = 0;
+	ArrayList<ProcessID> IdList;
+	ProcessID OrdinaryId;
+	int OrdinaryLevel = 0;
+	ProcessID PotencialOwner;
+	ProcessID Owner = null;
+	AfekAndGafniRMI[] Stubs;
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
-		// TODO Auto-generated constructor stub
+		this.Stubs = stub;
+		this.OrdinaryId = aux_pid;
 	}
 
 	public void run() {
 		Integer LevelAux;
-		Integer IdAux;
+		ProcessID IdAux;
 		
 		while(!Init.ConnectionsReady){
 			try {
@@ -30,12 +34,12 @@ public class OrdinaryThread implements Runnable {
 			LevelAux = this.RemoveElementLevel();
 			IdAux = this.RemoveElementId();
 			
-			if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux < OrdinaryId ) ){
+			if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < OrdinaryId.getId() ) ){
 				/* (level', id') < (level, id) */
 				/* Ignore */
-			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux > OrdinaryId ) ){
+			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > OrdinaryId.getId() ) ){
 				/* (level', id') < (level, id) */
-			}else if( LevelAux == OrdinaryLevel && IdAux == OrdinaryId ){
+			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == OrdinaryId.getId() ){
 				/* (level', id') = (level, id) */
 			}
 			
@@ -43,16 +47,15 @@ public class OrdinaryThread implements Runnable {
 
 	}
 
-	public void receiveOrdinaryMessage(int level, ProcessID id) {
-		// TODO Auto-generated method stub
-		
+	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
+		this.LevelList.add(level);
+		this.IdList.add(id);
 	}
-
 
 	public synchronized Integer RemoveElementLevel(){
 		return LevelList.remove(0);
 	}
-	public synchronized Integer RemoveElementId(){
+	public synchronized ProcessID RemoveElementId(){
 		return IdList.remove(0);
 	}
 
