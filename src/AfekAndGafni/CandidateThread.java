@@ -8,14 +8,20 @@ import java.util.ArrayList;
 public class CandidateThread implements Runnable {
 
 	ArrayList<Integer> LevelList;
-	ArrayList<ProcessID> IdList;
 	AfekAndGafniRMI[] stubSet;
-	 ProcessID me;
+	ProcessID me;
+	int CandidateLevel;
+	ArrayList<Integer> UsedIdList;
+	ArrayList<ProcessID> IdList;
+	int NumberOfProcesses;
 	 
-	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
+	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me, int NumberOfStubs) {
 		
 		this.stubSet = stubSet;
 		this.me = me;
+		this.NumberOfProcesses =  NumberOfStubs;
+		
+		this.UsedIdList = new ArrayList<Integer>();
 	}
 	
 	public void run() {
@@ -23,42 +29,52 @@ public class CandidateThread implements Runnable {
 		
 		// Wait up to 10 seconds
 		try {
-			
-				Thread.sleep((long)(Math.random() * 10000));
+			Thread.sleep((long)(Math.random() * 10000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		// Start Candidate process
 		System.out.println(me + " started candidate");
 		Candidate();
-		
-		
 	}
-
-	/* while (untraversed )= /) do
-		link% any untraversed link
-		send(level,id) on link
-		R: receive(level’,id’) on link’
-		if ((id=id’) and (killed=false)) then
-		level% level+1
-		untraversed% untraversed \ link
-		else
-		if ((level’,id’) < (level,id)) then goto R
-		else
-		send(level’,id’) on link’
-		killed% true
-		goto R
-		if (killed = false) then elected% true
-
-*/
 	
 	private void Candidate() {
 		// TODO Auto-generated method stub
-		while(true){
+		
+		/* YIELD HERE?   	<<<<<<<<<<<<<<<<<<<  	<<<<<<<<<<<<<<<<<<<		<<<<<<<<<<<<<<<<<<< 	<<<<<<<<<<<<<<<<<<<	JOÃƒO */
+		/*while(true){
 			
 			Thread.yield();
-		}
+		}*/
+
+		/*Capture links*/
+		int i = 0;
+		int NextId = me.getId();
 		
+		while(i != NumberOfProcesses){
+			try {
+				Thread.sleep((long)(Math.random() * 2000));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			/* Generate random Id, and make sure that the Id wasn't used or that is its own Id */
+			while(NextId != me.getId() && !UsedIdList.contains(NextId)){
+				NextId = (int)(Math.random() * NumberOfProcesses);
+			}
+			/* Send Candidate Message*/
+			UsedIdList.add(NextId);
+			SendCandidateMessage(NextId, CandidateLevel, me );
+			i++;
+		}
+	}
+	
+	public synchronized void SendCandidateMessage(int to, int Level, ProcessID me){
+		ProcessID sendto = new ProcessID(to+1);
+		try {
+			stubSet[sendto.getId()-1].sendToOrdinary( sendto, Level, me);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void receiveCandidateMessage(int level, ProcessID id) {
