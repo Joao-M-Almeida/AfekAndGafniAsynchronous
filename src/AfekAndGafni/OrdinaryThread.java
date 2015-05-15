@@ -46,6 +46,8 @@ public class OrdinaryThread implements Runnable {
 				System.out.println("Lulz... Isto não devia ter acontecido brother, fizeste merda...");
 			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 				/* if (level', id') < (level, id) */
+				System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+				System.out.println("(level', id') < (level, owner-id)");
 				PotencialOwner = IdAux;
 				/* (level, owner-id) = (level', id') */
 				OrdinaryLevel = LevelAux;
@@ -57,6 +59,8 @@ public class OrdinaryThread implements Runnable {
 				
 			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 				/* if (level', id') = (level, id) */
+				System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+				System.out.println("(level', id') = (level, owner-id)");
 				Owner = PotencialOwner;
 				SendToOwner(Owner, LevelAux, IdAux);
 			}
