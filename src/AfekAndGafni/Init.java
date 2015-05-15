@@ -148,7 +148,7 @@ public class Init {
 					while( true ){
 						st=0;
 						try{
-							// Para cada máquina, cria o stub para cada um dos processos.
+							// Para cada mï¿½quina, cria o stub para cada um dos processos.
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
 							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
 							System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
@@ -196,7 +196,7 @@ public class Init {
 			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
 				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;;
 				id_g = new ProcessID(aux_int + 1);
-				C[aux_int]=new CandidateThread(stub, id_g);
+				C[aux_int]=new CandidateThread(stub, id_g, NumberOfProcesses);
 				new Thread(C[aux_int]).start();
 			}
 			
