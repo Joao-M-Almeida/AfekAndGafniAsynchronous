@@ -57,6 +57,8 @@ public class OrdinaryThread implements Runnable {
 				
 			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 				/* if (level', id') = (level, id) */
+				Owner = PotencialOwner;
+				SendToOwner(Owner, LevelAux, IdAux);
 			}
 			
 		}
