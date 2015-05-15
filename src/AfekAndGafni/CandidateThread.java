@@ -1,18 +1,25 @@
 package AfekAndGafni;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 
 
 public class CandidateThread implements Runnable {
 
 	AfekAndGafniRMI[] stubSet;
-	 ProcessID me;
+	ProcessID me;
+	int CandidateLevel;
+	ArrayList<Integer> IdList;
+	int NumberOfProcesses;
 	 
-	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
+	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me, int NumberOfStubs) {
 		
 		this.stubSet = stubSet;
 		this.me = me;
+		this.NumberOfProcesses =  NumberOfStubs;
+		
+		this.IdList = new ArrayList<Integer>();
 	}
 	
 	public void run() {
@@ -20,21 +27,45 @@ public class CandidateThread implements Runnable {
 		
 		// Wait up to 10 seconds
 		try {
-			
-				Thread.sleep((long)(Math.random() * 10000));
+			Thread.sleep((long)(Math.random() * 10000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		// Start Candidate process
 		System.out.println(me + " started candidate");
 		Candidate();
-		
-		
 	}
 
 	private void Candidate() {
 		// TODO Auto-generated method stub
+		/*Capture links*/
+		int i = 0;
+		int NextId = me.getId();
 		
+		while(i != NumberOfProcesses){
+			try {
+				Thread.sleep((long)(Math.random() * 2000));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			/* Generate random Id, and make sure that the Id wasn't used or that is its own Id */
+			while(NextId != me.getId() && !IdList.contains(NextId)){
+				NextId = (int)(Math.random() * NumberOfProcesses);
+			}
+			/* Send Candidate Message*/
+			IdList.add(NextId);
+			SendCandidateMessage(NextId, CandidateLevel, me );
+			i++;
+		}
+	}
+	
+	public synchronized void SendCandidateMessage(int to, int Level, ProcessID me){
+		ProcessID sendto = new ProcessID(to+1);
+		try {
+			stubSet[sendto.getId()-1].sendToOrdinary( sendto, Level, me);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void receiveCandidateMessage(int level, ProcessID id) {
