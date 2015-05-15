@@ -7,6 +7,11 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runnable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public boolean server_rdy = false;
 	
 	private OrdinaryThread[] O;
@@ -38,14 +43,14 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 
 	public void sendToCandidate(ProcessID to, int level, ProcessID id)
 			throws RemoteException {
-		C[to.getId()].receiveCandidateMessage(level,id);		
+		C[to.getId()-1].receiveCandidateMessage(level,id);		
 		
 	}
 
 
 	public void sendToOrdinary(ProcessID to, int level, ProcessID id)
 			throws RemoteException {
-		O[to.getId()].receiveOrdinaryMessage(level,id);
+		O[to.getId()-1].receiveOrdinaryMessage(level,id);
 	}
 
 

@@ -11,7 +11,7 @@ public class Init {
 	public static String[] IPs;
 	public static Registry[] registry;
 	public static AfekAndGafniRMI[] stub;
-	public static int Process_Number;
+	//public static int Process_Number;
 	public static int MachineNumber;
 	public static int NumberOfMachines;
 	public static int NumberOfProcesses;
@@ -144,7 +144,7 @@ public class Init {
 					while( true ){
 						st=0;
 						try{
-							// Para cada m�quina, cria o stub para cada um dos processos.
+							// Para cada máquina, cria o stub para cada um dos processos.
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
 							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
 							System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
@@ -192,7 +192,7 @@ public class Init {
 			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
 				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;;
 				id_g = new ProcessID(aux_int + 1);
-				C[aux_int]=new CandidateThread(stub, id_g, NumberOfProcesses);
+				C[aux_int]=new CandidateThread(stub, id_g);
 				new Thread(C[aux_int]).start();
 			}
 			
@@ -208,4 +208,3 @@ public class Init {
 	
 	
 }
-

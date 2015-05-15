@@ -8,20 +8,17 @@ import java.util.ArrayList;
 public class CandidateThread implements Runnable {
 
 	ArrayList<Integer> LevelList;
-	AfekAndGafniRMI[] stubSet;
-	ProcessID me;
-	int CandidateLevel;
-	ArrayList<Integer> UsedIdList;
 	ArrayList<ProcessID> IdList;
-	int NumberOfProcesses;
+	AfekAndGafniRMI[] stubSet;
+	ArrayList<ProcessID> untraversed;
+	ProcessID me;
+	int myLevel;
 	 
-	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me, int NumberOfStubs) {
+	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		
 		this.stubSet = stubSet;
 		this.me = me;
-		this.NumberOfProcesses =  NumberOfStubs;
-		
-		this.UsedIdList = new ArrayList<Integer>();
+		untraversed= new ArrayList<ProcessID>();
 	}
 	
 	public void run() {
@@ -29,55 +26,63 @@ public class CandidateThread implements Runnable {
 		
 		// Wait up to 10 seconds
 		try {
-			Thread.sleep((long)(Math.random() * 10000));
+			
+				Thread.sleep((long)(Math.random() * 10000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		// Start Candidate process
 		System.out.println(me + " started candidate");
 		Candidate();
+		
+		
 	}
+
+	/* while (untraversed )= /) do
+		link% any untraversed link
+		send(level,id) on link
+		R: receive(level’,id’) on link’
+		if ((id=id’) and (killed=false)) then
+		level% level+1
+		untraversed% untraversed \ link
+		else
+		if ((level’,id’) < (level,id)) then goto R
+		else
+		send(level’,id’) on link’
+		killed% true
+		goto R
+		if (killed = false) then elected% true
+*/
 	
 	private void Candidate() {
 		// TODO Auto-generated method stub
+		myLevel=1;
+		for(int i=0;i<Init.NumberOfProcesses;i++) {
+			if((i+1)!=me.getId())
+				untraversed.add(new ProcessID(i+1));	
+		}
 		
-		/* YIELD HERE?   	<<<<<<<<<<<<<<<<<<<  	<<<<<<<<<<<<<<<<<<<		<<<<<<<<<<<<<<<<<<< 	<<<<<<<<<<<<<<<<<<<	JOÃO */
-		/*while(true){
-			
-			Thread.yield();
-		}*/
-
-		/*Capture links*/
-		int i = 0;
-		int NextId = me.getId();
-		
-		while(i != NumberOfProcesses){
+		ProcessID nextVictim;
+		while(!untraversed.isEmpty()){
+			nextVictim=untraversed.remove(0);
 			try {
-				Thread.sleep((long)(Math.random() * 2000));
-			} catch (InterruptedException e) {
+				if(Init.DEBUG)
+					System.out.println( me + " Sent Level: "+ myLevel + " to " +nextVictim );
+				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			/* Generate random Id, and make sure that the Id wasn't used or that is its own Id */
-			while(NextId != me.getId() && !UsedIdList.contains(NextId)){
-				NextId = (int)(Math.random() * NumberOfProcesses);
-			}
-			/* Send Candidate Message*/
-			UsedIdList.add(NextId);
-			SendCandidateMessage(NextId, CandidateLevel, me );
-			i++;
+			
+			
+			
+			Thread.yield();
 		}
-	}
-	
-	public synchronized void SendCandidateMessage(int to, int Level, ProcessID me){
-		ProcessID sendto = new ProcessID(to+1);
-		try {
-			stubSet[sendto.getId()-1].sendToOrdinary( sendto, Level, me);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void receiveCandidateMessage(int level, ProcessID id) {
+		if(Init.DEBUG)
+			System.out.println( me + " Received Level: "+ level + " from " +id );
 		LevelList.add(level);
 		IdList.add(id);
 	}
