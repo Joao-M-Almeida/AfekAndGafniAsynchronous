@@ -113,10 +113,16 @@ public class CandidateThread implements Runnable {
 					if(Init.DEBUG)
 						System.out.println("Candidate: " + me + " incremented level to: " + myLevel);
 					untraversed.remove(0);
+					if(untraversed.isEmpty()){
+						if(killed == false){
+							System.out.println(me + " elected!");
+							elected = true;
+							break;
+						}
+					}
 				}else{
 					if(CompareLevelId(me,myLevel,IdAux,LevelAux)){
 						// When does this happen?
-						WaitAnswer(); // Goto R
 					}else{
 						if(Init.DEBUG)
 							System.out.println( me + " sent Id" + IdAux.getId() + " and level :" + LevelAux + " to " + IdAux + " ordinary" );
@@ -124,7 +130,6 @@ public class CandidateThread implements Runnable {
 						if(Init.DEBUG)
 							System.out.println( me + " received kill" );
 						killed = true;
-						WaitAnswer();	
 					}
 				}
 			}
