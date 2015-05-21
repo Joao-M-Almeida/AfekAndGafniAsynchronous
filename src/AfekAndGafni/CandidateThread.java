@@ -2,6 +2,7 @@ package AfekAndGafni;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 
@@ -15,6 +16,9 @@ public class CandidateThread implements Runnable {
 	boolean killed = false;
 	boolean elected = false;
 	Integer myLevel;
+	private ProcessID nextVictim;
+	private int nextVictimIndex;
+	Random r;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		
@@ -23,6 +27,7 @@ public class CandidateThread implements Runnable {
 		untraversed= new ArrayList<ProcessID>();
 		LevelList = new ArrayList<Integer>();
 		IdList = new ArrayList<ProcessID>();
+		r=new Random();
 	}
 	
 	public void run() {
@@ -31,7 +36,7 @@ public class CandidateThread implements Runnable {
 		// Wait up to 10 seconds
 		try {
 			
-				Thread.sleep((long)(Math.random() * 10000));
+				Thread.sleep((long)(Math.random() * 000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -68,13 +73,14 @@ public class CandidateThread implements Runnable {
 		if(Init.DEBUG)
 			System.out.println("Candidate " + me + " has to traverse " + untraversed);
 		
-		ProcessID nextVictim;
-		while(!untraversed.isEmpty()){
+		
+		if(!untraversed.isEmpty()){
 			/*<   JOÃO  Acho que aqui não se pode remover
 			 *  o elemento, só depois de receberes uma 
 			 *  mensagem dele com o mesmo Id*/
 			//nextVictim=untraversed.remove(0);
-			nextVictim = untraversed.get(0);
+			nextVictimIndex = r.nextInt(untraversed.size());
+			nextVictim = untraversed.get(nextVictimIndex);
 			try {
 				if(Init.DEBUG)
 					System.out.println( "Candidate " + me + " Sent Level: "+ myLevel + " to " +nextVictim );
@@ -114,7 +120,7 @@ public class CandidateThread implements Runnable {
 					myLevel++;
 					if(Init.DEBUG)
 						System.out.println("Candidate: " + me + " incremented level to: " + myLevel);
-					untraversed.remove(0);
+					untraversed.remove(nextVictimIndex);
 					if(untraversed.isEmpty()){
 						if(killed == false){
 							System.out.println(me + " elected!");
@@ -122,11 +128,12 @@ public class CandidateThread implements Runnable {
 							break;
 						}
 					} else {
-						IdAux = untraversed.get(0);
+						nextVictimIndex = r.nextInt(untraversed.size());
+						nextVictim = untraversed.get(nextVictimIndex);
 						try {
 							if(Init.DEBUG)
 								System.out.println( "Candidate " + me + " Sent Level: "+ myLevel + " to " +IdAux );
-							stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, myLevel, me);
+							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
 						} catch (RemoteException e) {
 							e.printStackTrace();
 						}
