@@ -108,8 +108,10 @@ public class CandidateThread implements Runnable {
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
 								
-				if( me == IdAux && killed == false){
+				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
+					if(Init.DEBUG)
+						System.out.println("Candidate: " + me + " incremented level to: " + myLevel);
 					untraversed.remove(0);
 				}else{
 					if(CompareLevelId(me,myLevel,IdAux,LevelAux)){
