@@ -54,8 +54,8 @@ public class OrdinaryThread implements Runnable {
 					Owner_Id = IdAux;
 					if(Owner == null){
 						Owner = PotencialOwner;
+						System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 					}
-					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 					SendToOwner(Owner, LevelAux, IdAux);
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
@@ -91,6 +91,10 @@ public class OrdinaryThread implements Runnable {
 	}
 	public synchronized ProcessID RemoveElementId(){
 		return IdList.remove(0);
+	}
+	
+	public void Kill(){
+		
 	}
 
 }
