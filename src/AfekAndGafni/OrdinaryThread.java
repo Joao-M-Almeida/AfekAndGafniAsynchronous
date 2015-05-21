@@ -25,50 +25,52 @@ public class OrdinaryThread implements Runnable {
 	public void run() {
 		Integer LevelAux;
 		ProcessID IdAux;
-		
-		while(!Init.ConnectionsReady){
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
-			/*Process Messages and remove them from the list*/
+		while(true) {
 			
-			LevelAux = this.RemoveElementLevel();
-			IdAux = this.RemoveElementId();
-			
-			if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
-				/* if (level', id') < (level, id) */
-				/* Ignore */
-				System.out.println("Ordinary Process: Ignored Message.");
-			}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
-				/* if (level', id') < (level, id) */
-				System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
-				System.out.println("(level', id') < (level, owner-id)");
-				PotencialOwner = IdAux;
-				/* (level, owner-id) = (level', id') */
-				OrdinaryLevel = LevelAux;
-				Owner_Id = IdAux;
-				if(Owner == null){
-					Owner = PotencialOwner;
+			while(!Init.ConnectionsReady){
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-				SendToOwner(Owner, LevelAux, IdAux);
-				
-			}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
-				/* if (level', id') = (level, id) */
-				System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
-				System.out.println("(level', id') = (level, owner-id)");
-				Owner = PotencialOwner;
-				SendToOwner(Owner, LevelAux, IdAux);
 			}
-			
-		}
 
+			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
+				/*Process Messages and remove them from the list*/
+
+				LevelAux = this.RemoveElementLevel();
+				IdAux = this.RemoveElementId();
+
+				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
+					/* if (level', id') < (level, id) */
+					/* Ignore */
+					System.out.println("Lulz... Isto não devia ter acontecido brother, fizeste merda...");
+				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
+					/* if (level', id') < (level, id) */
+					System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+					System.out.println("(level', id') < (level, owner-id)");
+					PotencialOwner = IdAux;
+					/* (level, owner-id) = (level', id') */
+					OrdinaryLevel = LevelAux;
+					Owner_Id = IdAux;
+					if(Owner == null){
+						Owner = PotencialOwner;
+					}
+					SendToOwner(Owner, LevelAux, IdAux);
+
+				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
+					/* if (level', id') = (level, id) */
+					System.out.println( OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+					System.out.println("(level', id') = (level, owner-id)");
+					Owner = PotencialOwner;
+					SendToOwner(Owner, LevelAux, IdAux);
+				}
+
+			}
+			Thread.yield();
+		}
 	}
-	
+
 	public synchronized void SendToOwner(ProcessID Owner, Integer Level, ProcessID id){
 		try {
 			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id);
@@ -79,6 +81,8 @@ public class OrdinaryThread implements Runnable {
 	}
 
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
+		if(Init.DEBUG)
+			System.out.println("Ordinary "+ OrdinaryId + " Received Level: "+ level + " from " +id );
 		this.LevelList.add(level);
 		this.IdList.add(id);
 	}
@@ -91,5 +95,3 @@ public class OrdinaryThread implements Runnable {
 	}
 
 }
-
-

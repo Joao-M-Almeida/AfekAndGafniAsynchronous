@@ -21,6 +21,8 @@ public class CandidateThread implements Runnable {
 		this.stubSet = stubSet;
 		this.me = me;
 		untraversed= new ArrayList<ProcessID>();
+		LevelList = new ArrayList<Integer>();
+		IdList = new ArrayList<ProcessID>();
 	}
 	
 	public void run() {
@@ -66,12 +68,14 @@ public class CandidateThread implements Runnable {
 		
 		ProcessID nextVictim;
 		while(!untraversed.isEmpty()){
-			/*<<<<<<<<<<< <<<<<<<<<< <<<<<<<<<<<<<<<<<<<< <<<<<<<<<< <<<<<<<<< <<<<<<<<<<< <<<<<<<<<< <<<<<<<<<     JOÃO  Acho que aqui não se pode remover o elemento, só depois de receberes uma mensagem dele com o mesmo Id*/
+			/*<   JOÃO  Acho que aqui não se pode remover
+			 *  o elemento, só depois de receberes uma 
+			 *  mensagem dele com o mesmo Id*/
 			//nextVictim=untraversed.remove(0);
 			nextVictim = untraversed.get(0);
 			try {
 				if(Init.DEBUG)
-					System.out.println( me + " Sent Level: "+ myLevel + " to " +nextVictim );
+					System.out.println( "Candidate " + me + " Sent Level: "+ myLevel + " to " +nextVictim );
 				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
 				WaitAnswer();
 			} catch (RemoteException e) {
@@ -81,6 +85,7 @@ public class CandidateThread implements Runnable {
 			Thread.yield();
 		}
 		if(killed == false){
+			System.out.println(me + " elected!");
 			elected = true;
 		}
 		
@@ -91,6 +96,8 @@ public class CandidateThread implements Runnable {
 		ProcessID IdAux;
 		while(true){
 			try {
+				// Should we sleep? maybe adds to much delay? 
+				// Change to yield?
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -100,17 +107,20 @@ public class CandidateThread implements Runnable {
 				/* Answer Received */
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
-				
+								
 				if( me == IdAux && killed == false){
 					myLevel++;
 					untraversed.remove(0);
 				}else{
 					if(CompareLevelId(me,myLevel,IdAux,LevelAux)){
+						// When does this happen?
 						WaitAnswer(); // Goto R
 					}else{
 						stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, LevelAux, IdAux);
+						if(Init.DEBUG)
+							System.out.println( me + " received kill" );
 						killed = true;
-						WaitAnswer();
+						WaitAnswer();	
 					}
 				}
 			}
@@ -135,9 +145,9 @@ public class CandidateThread implements Runnable {
 		return IdList.remove(0);
 	}
 
-	public void receiveCandidateMessage(int level, ProcessID id) {
+	public synchronized void receiveCandidateMessage(int level, ProcessID id) {
 		if(Init.DEBUG)
-			System.out.println( me + " Received Level: "+ level + " from " +id );
+			System.out.println("Candidate "+ me + " Received Level: "+ level + " from " +id );
 		LevelList.add(level);
 		IdList.add(id);
 		LevelList.add(level);
