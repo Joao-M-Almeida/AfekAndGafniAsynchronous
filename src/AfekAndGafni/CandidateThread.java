@@ -93,7 +93,7 @@ public class CandidateThread implements Runnable {
 					myLevel++;
 					
 					if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Incremented level to: " + myLevel + ".");
-					untraversed.remove(0);
+					untraversed.remove(nextVictimIndex);
 
 					if(untraversed.isEmpty()){
 						if(killed == false){
