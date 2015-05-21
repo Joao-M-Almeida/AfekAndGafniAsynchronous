@@ -190,7 +190,7 @@ public class Init {
 			int aux_int;
 			// TODO Check if working: Creation of CandidateThreads
 			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
-				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;;
+				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;
 				id_g = new ProcessID(aux_int + 1);
 				C[aux_int]=new CandidateThread(stub, id_g);
 				new Thread(C[aux_int]).start();
