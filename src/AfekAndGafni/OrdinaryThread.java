@@ -47,7 +47,7 @@ public class OrdinaryThread implements Runnable {
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
-					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
+					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
 					PotencialOwner = IdAux;
 					/* (level, owner-id) = (level', id') */
 					OrdinaryLevel = LevelAux;

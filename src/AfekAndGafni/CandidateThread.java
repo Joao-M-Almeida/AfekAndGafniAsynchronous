@@ -33,7 +33,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 000));
+			Thread.sleep((long)(Math.random() * 100));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -68,9 +68,6 @@ public class CandidateThread implements Runnable {
 				e.printStackTrace();
 			}	
 		}
-		
-		
-
 	}
 	
 	public void WaitAnswer() throws RemoteException{
@@ -103,7 +100,7 @@ public class CandidateThread implements Runnable {
 							killall();
 							break;
 						}
-					} else {
+					}else{
 						nextVictimIndex = r.nextInt(untraversed.size());
 						nextVictim = untraversed.get(nextVictimIndex);
 						try {
