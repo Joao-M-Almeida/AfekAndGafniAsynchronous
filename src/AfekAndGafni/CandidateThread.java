@@ -62,7 +62,7 @@ public class CandidateThread implements Runnable {
 		// TODO Auto-generated method stub
 		myLevel=1;
 		for(int i=0;i<Init.NumberOfProcesses;i++) {
-			if((i+1)!=me.getId())
+			//if((i+1)!=me.getId())
 				untraversed.add(new ProcessID(i+1));	
 		}
 		if(Init.DEBUG)
@@ -120,6 +120,15 @@ public class CandidateThread implements Runnable {
 							System.out.println(me + " elected!");
 							elected = true;
 							break;
+						}
+					} else {
+						IdAux = untraversed.get(0);
+						try {
+							if(Init.DEBUG)
+								System.out.println( "Candidate " + me + " Sent Level: "+ myLevel + " to " +IdAux );
+							stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, myLevel, me);
+						} catch (RemoteException e) {
+							e.printStackTrace();
 						}
 					}
 				}else{
