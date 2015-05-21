@@ -2,6 +2,7 @@ package AfekAndGafni;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 
@@ -15,6 +16,9 @@ public class CandidateThread implements Runnable {
 	boolean killed = false;
 	boolean elected = false;
 	Integer myLevel;
+	private ProcessID nextVictim;
+	private int nextVictimIndex;
+	Random r;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		
@@ -23,6 +27,7 @@ public class CandidateThread implements Runnable {
 		untraversed= new ArrayList<ProcessID>();
 		LevelList = new ArrayList<Integer>();
 		IdList = new ArrayList<ProcessID>();
+		r=new Random();
 	}
 	
 	public void run() {
@@ -47,9 +52,10 @@ public class CandidateThread implements Runnable {
 		
 		if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
 		
-		ProcessID nextVictim;
 		if(!untraversed.isEmpty()){
-			nextVictim = untraversed.get(0);
+			nextVictimIndex = r.nextInt(untraversed.size());
+			nextVictim = untraversed.get(nextVictimIndex);
+
 			try {
 				if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + nextVictim  + ".");
 				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
@@ -84,8 +90,10 @@ public class CandidateThread implements Runnable {
 		
 				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
+					
 					if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Incremented level to: " + myLevel + ".");
 					untraversed.remove(0);
+
 					if(untraversed.isEmpty()){
 						if(killed == false){
 							System.out.println(me + " elected!");
@@ -93,10 +101,13 @@ public class CandidateThread implements Runnable {
 							break;
 						}
 					} else {
-						IdAux = untraversed.get(0);
+						nextVictimIndex = r.nextInt(untraversed.size());
+						nextVictim = untraversed.get(nextVictimIndex);
 						try {
-							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + IdAux + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
-							stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, myLevel, me);
+
+							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
+							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+
 						} catch (RemoteException e) {
 							e.printStackTrace();
 						}
