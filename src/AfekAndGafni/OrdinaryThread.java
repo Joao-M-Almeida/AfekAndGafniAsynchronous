@@ -44,7 +44,7 @@ public class OrdinaryThread implements Runnable {
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					/* Ignore */
-					System.out.println("Lulz... Isto não devia ter acontecido brother, fizeste merda...");
+					System.out.println("Ordinary Message: Ignore.");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
