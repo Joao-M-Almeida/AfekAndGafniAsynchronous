@@ -154,7 +154,6 @@ public class CandidateThread implements Runnable {
 		if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Received Message (Level, ID): (" + level + "," +id.getId() + ")." );
 		LevelList.add(level);
 		IdList.add(id);
-		LevelList.add(level);
 	}
 	
 	public void killall() throws RemoteException{
