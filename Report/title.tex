@@ -1,0 +1,54 @@
+\begin{titlepage}
+
+\begin{center}
+
+%% Insert the TU Delft logo at the bottom of the page.
+\begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.south)[anchor=south,inner sep=0pt]{
+        \includegraphics{cover/logo}
+    };
+\end{tikzpicture}
+
+%% Extra whitespace at the top.
+\vspace*{2\bigskipamount}
+
+%% Print the title in cyan.
+{\makeatletter
+\titlestyle\color{tudelft-cyan}\Huge\@title
+\makeatother}
+
+%% Print the optional subtitle in black.
+{\makeatletter
+\ifx\@subtitle\undefined\else
+    \bigskip
+    \titlefont\titleshape\LARGE\@subtitle
+\fi
+\makeatother}
+
+\bigskip
+\bigskip
+
+by
+%door
+
+\bigskip
+\bigskip
+
+%% Print the name of the author.
+{\makeatletter
+\titlefont\Large\bfseries\@author
+\makeatother}
+
+\vfill
+
+\bigskip
+\bigskip
+
+\bigskip
+\bigskip
+\vfill
+
+\end{center}
+
+\end{titlepage}
+

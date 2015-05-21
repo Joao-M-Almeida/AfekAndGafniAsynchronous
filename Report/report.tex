@@ -1,0 +1,43 @@
+\documentclass{tudelft-report}
+
+% 1)Translates MATLAB code:
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+% enclose the MATLAB code by using begin/end{lstlisting}
+
+% 2)Multiple figures on one page
+\usepackage{float}
+\usepackage[caption = false]{subfig}
+
+% 3)
+
+
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\title[Implementation of Election in Asynchronous Complete Networks]{Distributed Algorithms}
+\author{Jo\~ao Almeida\\Manuel Ribeiro}
+\affiliation{Faculty Electrical Engineering, Mathematics and Computer Science}
+
+%coverimage{cover.jpg}
+%\makecover[backboxheight = 2.64in]
+
+
+%% Include an optional title page.
+\input{title}
+
+
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+\input{File1}
+
+\chapter{DickPics}
+
+
+
+\end{document}
+
