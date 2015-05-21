@@ -45,11 +45,6 @@ public class OrdinaryThread implements Runnable {
 					/* if (level', id') < (level, id) */
 					/* Ignore */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
@@ -61,11 +56,6 @@ public class OrdinaryThread implements Runnable {
 						Owner = PotencialOwner;
 						System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 					}
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 					SendToOwner(Owner, LevelAux, IdAux);
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
@@ -73,11 +63,6 @@ public class OrdinaryThread implements Runnable {
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
 					Owner = PotencialOwner;
 					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 					SendToOwner(Owner, LevelAux, IdAux);
 				}
 
