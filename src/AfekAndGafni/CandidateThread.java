@@ -116,6 +116,8 @@ public class CandidateThread implements Runnable {
 						// When does this happen?
 						WaitAnswer(); // Goto R
 					}else{
+						if(Init.DEBUG)
+							System.out.println( me + " sent Id" + IdAux.getId() + " and level :" + LevelAux + " to " + IdAux + " ordinary" );
 						stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, LevelAux, IdAux);
 						if(Init.DEBUG)
 							System.out.println( me + " received kill" );
@@ -147,7 +149,7 @@ public class CandidateThread implements Runnable {
 
 	public synchronized void receiveCandidateMessage(int level, ProcessID id) {
 		if(Init.DEBUG)
-			System.out.println("Candidate "+ me + " Received Level: "+ level + " from " +id );
+			System.out.println("Candidate "+ me + " Received Level: "+ level + " and Id " +id.getId() );
 		LevelList.add(level);
 		IdList.add(id);
 		LevelList.add(level);
