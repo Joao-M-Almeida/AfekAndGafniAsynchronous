@@ -33,7 +33,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 100));
+			Thread.sleep((long)(Math.random() * 0));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +59,7 @@ public class CandidateThread implements Runnable {
 		if(!untraversed.isEmpty()){
 			nextVictimIndex = r.nextInt(untraversed.size());
 			nextVictim = untraversed.get(nextVictimIndex);
+			if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
 
 			try {
 				if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + nextVictim  + ".");
@@ -105,7 +106,7 @@ public class CandidateThread implements Runnable {
 						nextVictim = untraversed.get(nextVictimIndex);
 						try {
 
-							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
+							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
 							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
 
 						} catch (RemoteException e) {
@@ -115,7 +116,9 @@ public class CandidateThread implements Runnable {
 				}else{
 					if(CompareLevelId(me,myLevel,IdAux,LevelAux)){
 						// When does this happen?
-						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.");
+						if(Init.DEBUG) {
+							System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.\n"+"[Process: " + me.getId() + "]\t[C]\tCandidate Level: " +myLevel+", received (Level, ID): (" +LevelAux.intValue() +","+IdAux.getId()+")." );
+						}
 
 					}else{
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + IdAux  + ".");
