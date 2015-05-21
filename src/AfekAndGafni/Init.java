@@ -21,6 +21,7 @@ public class Init {
 	public static int[] timestamp;
 	
 	public static boolean DEBUG;
+	public static boolean ElectionOver;
 	
 	public static OrdinaryThread[] O; // Contains a pointer to the thread of each process on this machine. Process 1 on index 0
 	public static CandidateThread[] C;
@@ -52,7 +53,7 @@ public class Init {
 		boolean failed_connection = false;
 		boolean failed_lookup = false;
 		
-		DEBUG=true;
+		DEBUG=false;
 		
 		
 		NumberOfMachines = Integer.parseInt(args[0]);
@@ -68,7 +69,7 @@ public class Init {
 		
 		Arrays.fill(timestamp, 1);
 		
-		System.out.println("Number of Machines: " + NumberOfMachines + ". Machine Number: " + MachineNumber + ". Total Number of Processes: " + NumberOfProcesses + ".");
+		if(DEBUG) System.out.println("Number of Machines: " + NumberOfMachines + ". Machine Number: " + MachineNumber + ". Total Number of Processes: " + NumberOfProcesses + ".");
 		
 		IPs = new String[NumberOfMachines];
 		registry = new Registry[NumberOfMachines];
@@ -78,7 +79,7 @@ public class Init {
 		
 		try {
 			if( NumberOfMachines != args.length - 3){
-				System.out.println("Use of args incorrect...");
+				System.err.println("Use of args incorrect...");
 				System.exit(0);
 			}
 			
@@ -92,20 +93,20 @@ public class Init {
 			Init.createOThread(); // Doesn't need to be here
 			Server s = new Server(O,C);
 			new Thread(s).start();
-			System.out.print("Creating Server . .");
+			if(DEBUG)System.out.print("Creating Server . .");
 			while(!s.server_rdy){
-				System.out.print(" .");
+				if(DEBUG)System.out.print(" .");
 				try {
 					Thread.sleep(100);                 
 				} catch(InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
 			}
-			System.out.println("\nServer Ready");
+			if(DEBUG)System.out.println("\nServer Ready");
 			
 			for( i=0 ; i<NumberOfMachines ; i++ ){
 				k=0;
-				System.out.print("Trying to Connect with " + IPs[i] + " .");
+				if(DEBUG)System.out.print("Trying to Connect with " + IPs[i] + " .");
 				while (true) {
 					failed_connection=false;
 					try{
@@ -118,7 +119,7 @@ public class Init {
 						break;
 					}
 					
-					System.out.print(" .");
+					if(DEBUG)System.out.print(" .");
 					
 					try {
 						Thread.sleep(1000);                 
@@ -135,11 +136,11 @@ public class Init {
 					
 				}
 				failed_connection = false;
-				System.out.println("");
+				if(DEBUG)System.out.println("");
 				
 				k=0;
-				System.out.println("Connected to " + IPs[i] + ".");
-				System.out.print("Trying to Bind with " + IPs[i] + " .");
+				if(DEBUG)System.out.println("Connected to " + IPs[i] + ".");
+				if(DEBUG)System.out.print("Trying to Bind with " + IPs[i] + " .");
 				for(z=0 ; z<NumberOfProcessesPerMachine ; z++){
 					while( true ){
 						st=0;
@@ -147,7 +148,7 @@ public class Init {
 							// Para cada máquina, cria o stub para cada um dos processos.
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
 							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
-							System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
+							if(DEBUG)System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
 						} catch (RemoteException estub) {
 							failed_lookup = true;
 							//System.out.println(st);
@@ -160,7 +161,7 @@ public class Init {
 						if(!failed_lookup){
 							break;
 						}
-						System.out.print(" .");
+						if(DEBUG)System.out.print(" .");
 						try {
 							Thread.sleep(1000);                 
 						} catch(InterruptedException ex) {
@@ -176,14 +177,14 @@ public class Init {
 					}
 				}
 				   
-				System.out.println("\nBinded with " + IPs[i] + ".");
+				if(DEBUG)System.out.println("\nBinded with " + IPs[i] + ".");
 				failed_lookup = false;
 			
 			}
 			ConnectionsReady = true;
 			
 		
-			System.out.println("Connections Ready");
+			System.out.println("[INFO]\t  \tConnections Ready");
 			
 			
 			ProcessID id_g;

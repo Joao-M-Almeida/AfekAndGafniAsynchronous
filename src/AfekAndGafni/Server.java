@@ -27,7 +27,7 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 			for(i=0 ; i<Init.NumberOfProcessesPerMachine ; i++){
 				j = Init.MachineNumber*Init.NumberOfProcessesPerMachine - Init.NumberOfProcessesPerMachine + 1 + i;
 				registry.rebind("rmi://localhost:1099/Process" + j, stub);
-				System.out.printf("\nCreated: rmi://localhost:1099/Process" + j);
+				if(Init.DEBUG)System.out.printf("\nCreated: rmi://localhost:1099/Process" + j);
 			}
 			server_rdy = true;		
 		} catch (Exception e) {

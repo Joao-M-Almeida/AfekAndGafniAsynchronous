@@ -44,11 +44,10 @@ public class OrdinaryThread implements Runnable {
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					/* Ignore */
-					System.out.println("Ordinary Message: Ignore.");
+					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
-					System.out.println("Ordinary: " + OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id.getId() + " received Id: " + IdAux.getId() + " with Level: " + LevelAux );
-					System.out.println("(level', id') > (level, owner-id)");
+					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
 					PotencialOwner = IdAux;
 					/* (level, owner-id) = (level', id') */
 					OrdinaryLevel = LevelAux;
@@ -56,13 +55,14 @@ public class OrdinaryThread implements Runnable {
 					if(Owner == null){
 						Owner = PotencialOwner;
 					}
+					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 					SendToOwner(Owner, LevelAux, IdAux);
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 					/* if (level', id') = (level, id) */
-					System.out.println( OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id.getId() + " received Id: " + IdAux.getId() + " with Level: " + LevelAux );
-					System.out.println("(level', id') = (level, owner-id)");
+					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
 					Owner = PotencialOwner;
+					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 					SendToOwner(Owner, LevelAux, IdAux);
 				}
 
@@ -81,8 +81,7 @@ public class OrdinaryThread implements Runnable {
 	}
 
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
-		if(Init.DEBUG)
-			System.out.println("Ordinary "+ OrdinaryId + " Received Level': "+ level + " with ID': " +id.getId() );
+		if(Init.DEBUG) System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tReceived Message (Level,ID): (" + level + "," +id.getId() + ")." );
 		this.LevelList.add(level);
 		this.IdList.add(id);
 	}

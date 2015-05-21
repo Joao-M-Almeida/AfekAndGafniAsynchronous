@@ -40,7 +40,10 @@ public class CandidateThread implements Runnable {
 		
 		/* Start Candidate process */
 		System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Is now a Candidate" + ".");
-		Candidate();
+		if(!Init.ElectionOver){
+			Candidate();
+		}
+
 	}
 
 	private void Candidate() {
@@ -66,10 +69,7 @@ public class CandidateThread implements Runnable {
 	
 			Thread.yield();
 		}
-		if(killed == false){
-			System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Elected!! Fuck you bitches!! ");
-			elected = true;
-		}
+
 	}
 	
 	public void WaitAnswer() throws RemoteException{
@@ -96,8 +96,9 @@ public class CandidateThread implements Runnable {
 
 					if(untraversed.isEmpty()){
 						if(killed == false){
-							System.out.println(me + " elected!");
+							System.err.println("[Process: " + me.getId() + "]\t[C]\t" + "Elected!! ");
 							elected = true;
+							Init.ElectionOver = true;
 							break;
 						}
 					} else {
