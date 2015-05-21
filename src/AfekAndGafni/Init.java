@@ -28,7 +28,6 @@ public class Init {
 	public static boolean[] requested;
 	
 	
-	// TODO Check if is working
 	public static void createOThread(){
 		int i,aux_int;
 		Thread ot;
@@ -189,7 +188,6 @@ public class Init {
 			
 			ProcessID id_g;
 			int aux_int;
-			// TODO Check if working: Creation of CandidateThreads
 			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){
 				aux_int= MachineNumber*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + i;
 				id_g = new ProcessID(aux_int + 1);

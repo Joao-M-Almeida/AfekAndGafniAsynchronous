@@ -33,7 +33,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 5000));
+			Thread.sleep((long)(Math.random() * 000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class CandidateThread implements Runnable {
 			untraversed.add(new ProcessID(i+1));	
 		}
 		
-		if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
+		//if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
 		
 		if(!untraversed.isEmpty()){
 			nextVictimIndex = r.nextInt(untraversed.size());
