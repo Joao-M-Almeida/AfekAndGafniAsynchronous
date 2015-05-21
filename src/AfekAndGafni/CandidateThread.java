@@ -65,6 +65,8 @@ public class CandidateThread implements Runnable {
 			if((i+1)!=me.getId())
 				untraversed.add(new ProcessID(i+1));	
 		}
+		if(Init.DEBUG)
+			System.out.println("Candidate " + me + " has to traverse " + untraversed);
 		
 		ProcessID nextVictim;
 		while(!untraversed.isEmpty()){
