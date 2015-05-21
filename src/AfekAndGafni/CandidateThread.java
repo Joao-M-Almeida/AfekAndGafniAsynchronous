@@ -33,7 +33,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 100));
+			Thread.sleep((long)(Math.random() * 4000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,9 @@ public class CandidateThread implements Runnable {
 		myLevel=1;
 		
 		for(int i=0;i<Init.NumberOfProcesses;i++) {
-			untraversed.add(new ProcessID(i+1));	
+			if(me.getId() != i){
+				untraversed.add(new ProcessID(i+1));
+			}
 		}
 		
 		//if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
@@ -88,6 +90,7 @@ public class CandidateThread implements Runnable {
 		
 				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
+					Init.O[me.getId()-1].OrdinaryLevel = myLevel;
 					
 					if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Incremented level to: " + myLevel + ".");
 					untraversed.remove(nextVictimIndex);
@@ -101,10 +104,15 @@ public class CandidateThread implements Runnable {
 							break;
 						}
 					}else{
+
 						nextVictimIndex = r.nextInt(untraversed.size());
 						nextVictim = untraversed.get(nextVictimIndex);
 						try {
-
+							try {
+								Thread.sleep((long)(Math.random() * 100));
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
 							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
 
@@ -118,10 +126,14 @@ public class CandidateThread implements Runnable {
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.");
 
 					}else{
+						try {
+							Thread.sleep((long)(Math.random() * 100));
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + IdAux  + ".");
 						stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, LevelAux, IdAux);
-						if(Init.DEBUG)
-							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
+						System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
 						killed = true;
 					}
 				}

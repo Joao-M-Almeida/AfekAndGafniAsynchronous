@@ -52,7 +52,7 @@ public class Init {
 		boolean failed_connection = false;
 		boolean failed_lookup = false;
 		
-		DEBUG=false;
+		DEBUG=true;
 		
 		
 		NumberOfMachines = Integer.parseInt(args[0]);
