@@ -46,6 +46,10 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 		C[to.getId()-1].receiveCandidateMessage(level,id);		
 		
 	}
+	
+	public void ElectionOver(int id) throws RemoteException {
+		C[id].Kill();
+	}
 
 
 	public void sendToOrdinary(ProcessID to, int level, ProcessID id)

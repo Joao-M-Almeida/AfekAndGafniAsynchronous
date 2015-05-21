@@ -33,14 +33,15 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 5000));
+			Thread.sleep((long)(Math.random() * 000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
 		/* Start Candidate process */
-		System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Is now a Candidate" + ".");
+		
 		if(!Init.ElectionOver){
+			System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Is now a Candidate" + ".");
 			Candidate();
 		}
 
@@ -65,10 +66,10 @@ public class CandidateThread implements Runnable {
 				WaitAnswer();
 			} catch (RemoteException e) {
 				e.printStackTrace();
-			}
-	
-			Thread.yield();
+			}	
 		}
+		
+		
 
 	}
 	
@@ -99,6 +100,7 @@ public class CandidateThread implements Runnable {
 							System.err.println("[Process: " + me.getId() + "]\t[C]\t" + "Elected!! ");
 							elected = true;
 							Init.ElectionOver = true;
+							killall();
 							break;
 						}
 					} else {
@@ -154,5 +156,17 @@ public class CandidateThread implements Runnable {
 		IdList.add(id);
 		LevelList.add(level);
 	}
+	
+	public void killall() throws RemoteException{
+		int i;
+		for(i=0;i<Init.NumberOfProcesses;i++){
+			stubSet[i].ElectionOver(i);
+		}
+	}
+	
+	public synchronized void Kill(){
+		Init.ElectionOver = true;
+	}
+
 
 }
