@@ -44,10 +44,10 @@ public class OrdinaryThread implements Runnable {
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					/* Ignore */
-					System.out.println("Lulz... Isto não devia ter acontecido brother, fizeste merda...");
+					System.out.println("Ignored");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
-					System.out.println("Process: " + OrdinaryId + " with Level: " + OrdinaryLevel + "and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+					System.out.println("Ordinary: " + OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id.getId() + " received Id: " + IdAux.getId() + " with Level: " + LevelAux );
 					System.out.println("(level', id') < (level, owner-id)");
 					PotencialOwner = IdAux;
 					/* (level, owner-id) = (level', id') */
@@ -60,7 +60,7 @@ public class OrdinaryThread implements Runnable {
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 					/* if (level', id') = (level, id) */
-					System.out.println( OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id + " received Id: " + IdAux + " with Level: " + LevelAux );
+					System.out.println( OrdinaryId + " with Level: " + OrdinaryLevel + " and Owner-Id: " + Owner_Id.getId() + " received Id: " + IdAux.getId() + " with Level: " + LevelAux );
 					System.out.println("(level', id') = (level, owner-id)");
 					Owner = PotencialOwner;
 					SendToOwner(Owner, LevelAux, IdAux);
@@ -82,7 +82,7 @@ public class OrdinaryThread implements Runnable {
 
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
 		if(Init.DEBUG)
-			System.out.println("Ordinary "+ OrdinaryId + " Received Level: "+ level + " from " +id );
+			System.out.println("Ordinary "+ OrdinaryId + " Received Level': "+ level + " with ID': " +id.getId() );
 		this.LevelList.add(level);
 		this.IdList.add(id);
 	}
