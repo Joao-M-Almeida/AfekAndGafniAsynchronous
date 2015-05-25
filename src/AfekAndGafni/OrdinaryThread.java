@@ -12,6 +12,8 @@ public class OrdinaryThread implements Runnable {
 	ProcessID Owner = null;
 	ProcessID Owner_Id;
 	AfekAndGafniRMI[] Stubs;
+	private ArrayList<ProcessID> fromList;
+	
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
 		this.Stubs = stub;
@@ -20,11 +22,13 @@ public class OrdinaryThread implements Runnable {
 		
 		this.LevelList = new ArrayList<Integer>();
 		this.IdList = new ArrayList<ProcessID>();
+		fromList = new ArrayList<ProcessID>();
 	}
 
 	public void run() {
 		Integer LevelAux;
 		ProcessID IdAux;
+		ProcessID fromAux;
 		while(true) {
 			
 			while(!Init.ConnectionsReady){
@@ -35,12 +39,13 @@ public class OrdinaryThread implements Runnable {
 				}
 			}
 
-			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
+			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty() && !this.fromList.isEmpty()){
 				/*Process Messages and remove them from the list*/
 
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
-
+				fromAux = this.RemoveElementfrom();
+				
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					/* Ignore */
@@ -48,7 +53,7 @@ public class OrdinaryThread implements Runnable {
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
-					PotencialOwner = IdAux;
+					PotencialOwner = fromAux;
 					/* (level, owner-id) = (level', id') */
 					OrdinaryLevel = LevelAux;
 					Owner_Id = IdAux;
@@ -60,9 +65,9 @@ public class OrdinaryThread implements Runnable {
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 					/* if (level', id') = (level, id) */
-					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
+					if(true)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId() + ") from "+ fromAux +".");
 					Owner = PotencialOwner;
-					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
+					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " +Owner +".");
 					SendToOwner(Owner, LevelAux, IdAux);
 				}
 
@@ -81,10 +86,11 @@ public class OrdinaryThread implements Runnable {
 		return;
 	}
 
-	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
-		if(Init.DEBUG) System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tReceived Message (Level,ID): (" + level + "," +id.getId() + ")." );
+	public synchronized void receiveOrdinaryMessage(int level, ProcessID id,ProcessID from) {
+		if(Init.DEBUG) System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tReceived Message (Level,ID): (" + level + "," +id.getId() + ") from: "+from+"." );
 		this.LevelList.add(level);
 		this.IdList.add(id);
+		this.fromList.add(from);
 	}
 
 	public synchronized Integer RemoveElementLevel(){
@@ -92,6 +98,10 @@ public class OrdinaryThread implements Runnable {
 	}
 	public synchronized ProcessID RemoveElementId(){
 		return IdList.remove(0);
+	}
+	
+	private synchronized ProcessID RemoveElementfrom() {
+		return fromList.remove(0);
 	}
 	
 	public void Kill(){

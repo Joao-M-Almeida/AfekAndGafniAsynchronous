@@ -65,7 +65,7 @@ public class CandidateThread implements Runnable {
 
 			try {
 				if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + nextVictim  + ".");
-				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me,me);
 				WaitAnswer();
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -111,7 +111,7 @@ public class CandidateThread implements Runnable {
 						try {
 
 							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
-							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me,me);
 
 						} catch (RemoteException e) {
 							e.printStackTrace();
@@ -119,14 +119,14 @@ public class CandidateThread implements Runnable {
 					}
 				}else{
 					if(CompareLevelId(me,myLevel,IdAux,LevelAux)){
-						// When does this happen?
+						// When does this happen? TODO: Check this
 						if(Init.DEBUG) {
-							System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.\n"+"[Process: " + me.getId() + "]\t[C]\tCandidate Level: " +myLevel+", received (Level, ID): (" +LevelAux.intValue() +","+IdAux.getId()+")." );
+							System.err.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.\n"+"[Process: " + me.getId() + "]\t[C]\tCandidate Level: " +myLevel+", received (Level, ID): (" +LevelAux +","+IdAux.getId()+")." );
 						}
 
 					}else{
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + fromAux  + ".");
-						stubSet[IdAux.getId()-1].sendToOrdinary(fromAux, LevelAux, IdAux);
+						stubSet[IdAux.getId()-1].sendToOrdinary(fromAux, LevelAux, IdAux,me);
 						System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
 						killed = true;
 					}
