@@ -1,0 +1,53 @@
+\section*{Tests}
+
+To guarantee the quality of our implementation we ran multiple test, a summary of those tests is present in Table \ref{tab:testtable}.
+
+For each test we measured a series of parameters to evaluate the output of algorithm. The parameters where:
+
+\begin{itemize}
+\item{\textbf{Number of Level Increases:}} Sum of the levels of all processes 
+\item{\textbf{Number of Capture Messages:}} Number of capture messages sent by all candidate nodes
+\item{\textbf{Number of Captures:}} Number of captures that were successful, measured by the ordinary nodes
+\item{\textbf{Number of Kill messages:}} Number of messages sent by ordinary nodes to kill their previous owner
+\item{\textbf{Number of Acknowledgment messages:}}
+\item{\textbf{Number of Capture/Level Discrepancies:}} The difference between the number of captures and number of level increases 
+
+\end{itemize}
+
+\begin{table}[h] 
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|c|c|c|c|c|c|c}
+Test \# & \# Machines & Total \# Processes & \#Level increases & \# Captures & \# Kills & \# Acks & \begin{tabular}[c]{@{}c@{}}\#Capture/Level \\ Discrepancies\end{tabular} \\ \hline
+1 & 1 & 10 &  &  &  &  &  \\ \hline
+2 & 2 & 10 &  &  &  &  &  \\ \hline
+3 & 1 & 10 &  &  &  &  &  \\ \hline
+4 & 1 & 20 &  &  &  &  &  \\ \hline
+5 & 1 & 50 &  &  &  &  &  \\ \hline
+6 & 1 & 100 &  &  &  &  &  \\ \hline
+7 & 1 & 250 &  &  &  &  &  \\ \hline
+8 & 1 & 500 &  &  &  &  &  \\ \hline
+9 & 1 & 1000 &  &  &  &  & 
+\end{tabular}
+}
+\caption{}\label{tab:testtable}
+\end{table}
+
+As you can see there is a difference between the number
+
+\begin{Verbatim}[frame=single]
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 4]	[O]	Captured by Candidate Process: 3.
+[Process: 2]	[O]	Captured by Candidate Process: 3.
+[Process: 1]	[O]	Captured by Candidate Process: 3.
+[Process: 5]	[O]	Captured by Candidate Process: 3.
+[Process: 3]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 0.	Times Captured = 1.
+[Process: 2]	[C]	Level = 0.	Times Captured = 1.
+[Process: 3]	[C]	Level = 5.	Times Captured = 0.
+[Process: 4]	[C]	Level = 0.	Times Captured = 1.
+[Process: 5]	[C]	Level = 0.	Times Captured = 1.
+[INFO]		[ ]	Level Sum = 5.	Captures Sum = 4.
+\end{Verbatim}
+
+
