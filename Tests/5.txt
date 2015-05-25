@@ -1,0 +1,25 @@
+[INFO]	  	Connections Ready
+[Process: 2]	[C]	Is now a Candidate.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 4]	[O]	Captured by Candidate Process: 2.
+[Process: 2]	[O]	Captured by Candidate Process: 4.
+[Process: 3]	[O]	Captured by Candidate Process: 5.
+[Process: 5]	[O]	Captured by Candidate Process: 3.
+[Process: 1]	[O]	Captured by Candidate Process: 3.
+[Process: 4]	[O]	Captured by Candidate Process: 5.
+[Process: 2]	[C]	Was Killed
+[Process: 1]	[O]	Captured by Candidate Process: 5.
+[Process: 3]	[C]	Was Killed
+[Process: 2]	[O]	Captured by Candidate Process: 5.
+[Process: 4]	[C]	Was Killed
+[Process: 5]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 2]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 3]	[C]	Level = 3.	Times Captured = 1.	Acks = 3.
+[Process: 4]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 5]	[C]	Level = 5.	Times Captured = 1.	Acks = 4.
+[INFO]		[ ]	Level Sum - Number of Processes = 8.	Captures Sum = 8.	Total Kills = 3	Total Acks = 11.
+Missed captures: 0
