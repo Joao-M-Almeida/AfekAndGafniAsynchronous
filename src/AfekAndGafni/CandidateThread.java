@@ -128,13 +128,15 @@ public class CandidateThread implements Runnable {
 						// When does this happen?
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.");
 
-					}else{
+					}else if(IdAux.getId()==me.getId()){
+						if(Init.DEBUG) System.err.println("["+me+"]\t[C]\tIGNORING (Level, ID): ("+LevelAux+","+IdAux.getId()+").");
+					}else {
 						try {
 							Thread.sleep((long)(Math.random() * 100));
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + IdAux  + ".");
+						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") received from to Ordinary " + LinkAux  + ".");
 						stubSet[LinkAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
 						if(!killed){
 							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );

@@ -57,7 +57,7 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 
 	public void sendToOrdinary(ProcessID to, int level, ProcessID id, ProcessID link)
 			throws RemoteException {
-		System.err.println("to,level,id,link = " +  to.getId()+","+level+","+id.getId()+","+link.getId());
+		//System.err.println("to,level,id,link = " +  to.getId()+","+level+","+id.getId()+","+link.getId());
 		O[to.getId()-1].receiveOrdinaryMessage(level,id, link);
 	}
 
