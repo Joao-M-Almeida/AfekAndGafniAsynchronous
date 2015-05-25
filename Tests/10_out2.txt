@@ -1,0 +1,20 @@
+Use of arguments: [number of machines (n)] [ip_1]...[ip_n] [process number of the corresponding machine] [number of processes in each machine]
+[INFO]	  	Connections Ready
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 10]	[C]	Is now a Candidate.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 10]	[O]	Captured by Candidate Process: 9.
+[Process: 9]	[O]	Captured by Candidate Process: 5.
+[Process: 7]	[O]	Captured by Candidate Process: 1.
+[Process: 8]	[O]	Captured by Candidate Process: 5.
+[Process: 9]	[C]	Was Killed
+[Process: 10]	[O]	Captured by Candidate Process: 1.
+[Process: 6]	[O]	Captured by Candidate Process: 5.
+[Process: 6]	[C]	Was Killed
+[Process: 6]	[O]	Captured by Candidate Process: 1.
+[Process: 8]	[O]	Captured by Candidate Process: 1.
+[Process: 10]	[C]	Was Killed
+[Process: 7]	[C]	Was Killed
+[Process: 9]	[O]	Captured by Candidate Process: 1.
