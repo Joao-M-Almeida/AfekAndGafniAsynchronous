@@ -1,0 +1,95 @@
+[INFO]	  	Connections Ready
+[Process: 2]	[C]	Is now a Candidate.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 20]	[C]	Is now a Candidate.
+[Process: 18]	[C]	Is now a Candidate.
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 19]	[C]	Is now a Candidate.
+[Process: 15]	[C]	Is now a Candidate.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 10]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 11]	[C]	Is now a Candidate.
+[Process: 17]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 16]	[C]	Is now a Candidate.
+[Process: 12]	[C]	Is now a Candidate.
+[Process: 13]	[C]	Is now a Candidate.
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 14]	[C]	Is now a Candidate.
+[Process: 6]	[O]	Captured by Candidate Process: 10.
+[Process: 2]	[O]	Captured by Candidate Process: 6.
+[Process: 8]	[O]	Captured by Candidate Process: 19.
+[Process: 17]	[O]	Captured by Candidate Process: 11.
+[Process: 18]	[O]	Captured by Candidate Process: 17.
+[Process: 12]	[O]	Captured by Candidate Process: 2.
+[Process: 19]	[O]	Captured by Candidate Process: 7.
+[Process: 7]	[O]	Captured by Candidate Process: 20.
+[Process: 15]	[O]	Captured by Candidate Process: 12.
+[Process: 4]	[O]	Captured by Candidate Process: 5.
+[Process: 14]	[O]	Captured by Candidate Process: 16.
+[Process: 10]	[O]	Captured by Candidate Process: 3.
+[Process: 16]	[O]	Captured by Candidate Process: 2.
+[Process: 10]	[C]	Was Killed
+[Process: 11]	[O]	Captured by Candidate Process: 20.
+[Process: 6]	[C]	Was Killed
+[Process: 7]	[C]	Was Killed
+[Process: 6]	[O]	Captured by Candidate Process: 17.
+[Process: 2]	[O]	Captured by Candidate Process: 19.
+[Process: 19]	[O]	Captured by Candidate Process: 2.
+[Process: 17]	[C]	Was Killed
+[Process: 17]	[O]	Captured by Candidate Process: 19.
+[Process: 11]	[C]	Was Killed
+[Process: 17]	[C]	Received a kill Message, but was already killed.
+[Process: 6]	[O]	Captured by Candidate Process: 2.
+[Process: 1]	[O]	Captured by Candidate Process: 19.
+[Process: 13]	[O]	Captured by Candidate Process: 2.
+[Process: 15]	[O]	Captured by Candidate Process: 2.
+[Process: 12]	[C]	Was Killed
+[Process: 10]	[O]	Captured by Candidate Process: 2.
+[Process: 3]	[C]	Was Killed
+[Process: 20]	[O]	Captured by Candidate Process: 2.
+[Process: 11]	[O]	Captured by Candidate Process: 2.
+[Process: 20]	[C]	Was Killed
+[Process: 8]	[O]	Captured by Candidate Process: 2.
+[Process: 19]	[C]	Was Killed
+[Process: 5]	[O]	Captured by Candidate Process: 2.
+[Process: 1]	[O]	Captured by Candidate Process: 2.
+[Process: 19]	[C]	Received a kill Message, but was already killed.
+[Process: 4]	[O]	Captured by Candidate Process: 2.
+[Process: 5]	[C]	Was Killed
+[Process: 7]	[O]	Captured by Candidate Process: 2.
+[Process: 20]	[C]	Received a kill Message, but was already killed.
+[Process: 3]	[O]	Captured by Candidate Process: 2.
+[Process: 18]	[O]	Captured by Candidate Process: 2.
+[Process: 17]	[C]	Received a kill Message, but was already killed.
+[Process: 14]	[O]	Captured by Candidate Process: 2.
+[Process: 16]	[C]	Was Killed
+[Process: 9]	[O]	Captured by Candidate Process: 2.
+[Process: 17]	[O]	Captured by Candidate Process: 2.
+[Process: 19]	[C]	Received a kill Message, but was already killed.
+[Process: 2]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 2]	[C]	Level = 20.	Times Captured = 2.	Acks = 19.
+[Process: 3]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 4]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 5]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 6]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 7]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 8]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 9]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 10]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 11]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 12]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 13]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 14]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 15]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 16]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 17]	[C]	Level = 3.	Times Captured = 3.	Acks = 5.
+[Process: 18]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 19]	[C]	Level = 5.	Times Captured = 2.	Acks = 7.
+[Process: 20]	[C]	Level = 3.	Times Captured = 1.	Acks = 4.
+[INFO]		[ ]	Level Sum - Number of Processes = 35.	Captures Sum = 35.	Total Kills = 16	Total Acks = 51.
+Missed captures: 0

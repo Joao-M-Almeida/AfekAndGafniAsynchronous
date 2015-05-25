@@ -14,6 +14,7 @@ public class OrdinaryThread implements Runnable {
 	ProcessID Owner_Id;
 	AfekAndGafniRMI[] Stubs;
 	int captured = 0;
+	int ack = 0;
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
 		this.Stubs = stub;
@@ -29,16 +30,17 @@ public class OrdinaryThread implements Runnable {
 		Integer LevelAux;
 		ProcessID IdAux;
 		ProcessID LinkAux;
+		while(!Init.ConnectionsReady){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		while(true) {
 			
-			while(!Init.ConnectionsReady){
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-
+			Thread.yield();
+			
 			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
 				/*Process Messages and remove them from the list*/
 
@@ -50,11 +52,6 @@ public class OrdinaryThread implements Runnable {
 					/* if (level', id') < (level, id) */
 					/* Ignore */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
@@ -66,6 +63,7 @@ public class OrdinaryThread implements Runnable {
 						Owner = PotencialOwner;
 						System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
 						captured++;
+						ack++;
 					}
 					SendToOwner(Owner, LevelAux, IdAux);
 
@@ -79,10 +77,11 @@ public class OrdinaryThread implements Runnable {
 						System.err.println("(Level',Id') = (" + LevelAux + "," + IdAux.getId() + ")\t(Level, Id) = (" + OrdinaryLevel+","+ Owner_Id.getId());
 					}
 					SendToOwner(Owner, LevelAux, IdAux);
+					ack++;
 				}
 
 			}
-			Thread.yield();
+			
 		}
 	}
 

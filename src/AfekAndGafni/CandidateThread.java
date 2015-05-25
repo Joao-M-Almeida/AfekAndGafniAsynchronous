@@ -16,12 +16,16 @@ public class CandidateThread implements Runnable {
 	ProcessID me;
 	boolean killed = false;
 	boolean elected = false;
-	Integer myLevel = 0;
+	Integer myLevel = 1;
 	private ProcessID nextVictim;
 	private int nextVictimIndex;
 	Random r;
 	int Lsum = 0;
 	int Csum = 0;
+	int count = 0;
+	int ackR = 0;
+	int ackS = 0;
+	int kills = 0;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		this.stubSet = stubSet;
@@ -36,7 +40,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 4000));
+			Thread.sleep((long)(Math.random() * 10));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -81,11 +85,7 @@ public class CandidateThread implements Runnable {
 		ProcessID LinkAux;
 		while(true){
 			
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			Thread.yield();
 		
 			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
 				/* Answer Received */
@@ -95,6 +95,7 @@ public class CandidateThread implements Runnable {
 		
 				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
+					ackR++;
 					//Init.O[me.getId()-1].OrdinaryLevel = myLevel;
 					
 					if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Incremented level to: " + myLevel + ".");
@@ -130,11 +131,15 @@ public class CandidateThread implements Runnable {
 						stubSet[LinkAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
 						if(!killed){
 							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
+							
 						}else{
 							System.out.println( "[Process: " + me.getId() + "]\t[C]\tReceived a kill Message, but was already killed." );
 						}
-						
+						kills++;
+						ackS++;
 						killed = true;
+					}else{
+						count ++;
 					}
 				}
 			}
@@ -174,12 +179,25 @@ public class CandidateThread implements Runnable {
 	}
 	
 	public synchronized void Kill(){
+		int rn;
+		int aux;
 		Init.ElectionOver = true;
-		System.out.println("[Process: " + me.getId() + "]\t[C]\tLevel = " + myLevel + ".\tTimes Captured = " + Init.O[me.getId()-1].captured + ".");
-		Init.Lsum = Init.Lsum + myLevel;
-		Init.Csum =  Init.Csum + Init.O[me.getId()-1].captured;
+		aux = ackR  + ackS;
+		System.out.println("[Process: " + me.getId() + "]\t[C]\tLevel = " + myLevel + ".\tTimes Captured = " + Init.O[me.getId()-1].captured + ".\tAcks = " + aux + ".");
+		Init.lCounter(myLevel);
+		Init.cCounter(Init.O[me.getId()-1].captured);
+		Init.totalA = Init.totalA + aux;
+		Init.totalC = Init.totalC + count;
+		Init.totalK = Init.totalK + kills;
 		if(me.getId() == Init.NumberOfProcesses){
-			System.out.println("[INFO]\t\t[ ]\tLevel Sum = " + Init.Lsum + ".\tCaptures Sum = " + Init.Csum + ".");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			rn = Init.Lsum - Init.NumberOfProcesses;
+			System.out.println("[INFO]\t\t[ ]\tLevel Sum - Number of Processes = " + rn+ ".\tCaptures Sum = " + Init.Csum + ".\tTotal Kills = " + Init.totalK + "\tTotal Acks = " + Init.totalA + ".");
+			System.out.println("Missed captures: " + Init.totalC);
 		}
 	}
 

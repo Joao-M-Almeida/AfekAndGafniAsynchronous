@@ -1,0 +1,277 @@
+[INFO]	  	Connections Ready
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 16]	[C]	Is now a Candidate.
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 22]	[C]	Is now a Candidate.
+[Process: 17]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 24]	[C]	Is now a Candidate.
+[Process: 12]	[C]	Is now a Candidate.
+[Process: 25]	[C]	Is now a Candidate.
+[Process: 31]	[C]	Is now a Candidate.
+[Process: 20]	[C]	Is now a Candidate.
+[Process: 33]	[C]	Is now a Candidate.
+[Process: 29]	[C]	Is now a Candidate.
+[Process: 32]	[C]	Is now a Candidate.
+[Process: 27]	[C]	Is now a Candidate.
+[Process: 21]	[C]	Is now a Candidate.
+[Process: 10]	[C]	Is now a Candidate.
+[Process: 13]	[C]	Is now a Candidate.
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 46]	[C]	Is now a Candidate.
+[Process: 19]	[C]	Is now a Candidate.
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 18]	[C]	Is now a Candidate.
+[Process: 34]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 28]	[C]	Is now a Candidate.
+[Process: 42]	[C]	Is now a Candidate.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 15]	[C]	Is now a Candidate.
+[Process: 14]	[C]	Is now a Candidate.
+[Process: 37]	[C]	Is now a Candidate.
+[Process: 38]	[C]	Is now a Candidate.
+[Process: 30]	[C]	Is now a Candidate.
+[Process: 11]	[C]	Is now a Candidate.
+[Process: 40]	[C]	Is now a Candidate.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 23]	[C]	Is now a Candidate.
+[Process: 26]	[C]	Is now a Candidate.
+[Process: 36]	[C]	Is now a Candidate.
+[Process: 2]	[C]	Is now a Candidate.
+[Process: 48]	[C]	Is now a Candidate.
+[Process: 49]	[C]	Is now a Candidate.
+[Process: 45]	[C]	Is now a Candidate.
+[Process: 47]	[C]	Is now a Candidate.
+[Process: 35]	[C]	Is now a Candidate.
+[Process: 44]	[C]	Is now a Candidate.
+[Process: 43]	[C]	Is now a Candidate.
+[Process: 39]	[C]	Is now a Candidate.
+[Process: 50]	[C]	Is now a Candidate.
+[Process: 41]	[C]	Is now a Candidate.
+[Process: 9]	[O]	Captured by Candidate Process: 42.
+[Process: 5]	[O]	Captured by Candidate Process: 24.
+[Process: 16]	[O]	Captured by Candidate Process: 10.
+[Process: 10]	[O]	Captured by Candidate Process: 5.
+[Process: 32]	[O]	Captured by Candidate Process: 29.
+[Process: 21]	[O]	Captured by Candidate Process: 1.
+[Process: 7]	[O]	Captured by Candidate Process: 36.
+[Process: 3]	[O]	Captured by Candidate Process: 2.
+[Process: 8]	[O]	Captured by Candidate Process: 45.
+[Process: 6]	[O]	Captured by Candidate Process: 47.
+[Process: 2]	[O]	Captured by Candidate Process: 37.
+[Process: 40]	[O]	Captured by Candidate Process: 33.
+[Process: 38]	[O]	Captured by Candidate Process: 3.
+[Process: 42]	[O]	Captured by Candidate Process: 32.
+[Process: 35]	[O]	Captured by Candidate Process: 19.
+[Process: 31]	[O]	Captured by Candidate Process: 27.
+[Process: 49]	[O]	Captured by Candidate Process: 7.
+[Process: 44]	[O]	Captured by Candidate Process: 48.
+[Process: 47]	[O]	Captured by Candidate Process: 23.
+[Process: 30]	[O]	Captured by Candidate Process: 22.
+[Process: 34]	[O]	Captured by Candidate Process: 15.
+[Process: 29]	[O]	Captured by Candidate Process: 20.
+[Process: 25]	[O]	Captured by Candidate Process: 16.
+[Process: 24]	[O]	Captured by Candidate Process: 8.
+[Process: 17]	[O]	Captured by Candidate Process: 41.
+[Process: 19]	[O]	Captured by Candidate Process: 40.
+[Process: 23]	[O]	Captured by Candidate Process: 6.
+[Process: 18]	[O]	Captured by Candidate Process: 17.
+[Process: 14]	[O]	Captured by Candidate Process: 4.
+[Process: 13]	[O]	Captured by Candidate Process: 12.
+[Process: 12]	[O]	Captured by Candidate Process: 21.
+[Process: 36]	[O]	Captured by Candidate Process: 10.
+[Process: 43]	[O]	Captured by Candidate Process: 36.
+[Process: 37]	[O]	Captured by Candidate Process: 47.
+[Process: 48]	[O]	Captured by Candidate Process: 20.
+[Process: 26]	[O]	Captured by Candidate Process: 4.
+[Process: 27]	[O]	Captured by Candidate Process: 3.
+[Process: 28]	[O]	Captured by Candidate Process: 23.
+[Process: 3]	[C]	Was Killed
+[Process: 10]	[C]	Was Killed
+[Process: 11]	[O]	Captured by Candidate Process: 22.
+[Process: 15]	[C]	Was Killed
+[Process: 16]	[O]	Captured by Candidate Process: 48.
+[Process: 37]	[C]	Was Killed
+[Process: 2]	[O]	Captured by Candidate Process: 42.
+[Process: 38]	[O]	Captured by Candidate Process: 29.
+[Process: 34]	[O]	Captured by Candidate Process: 41.
+[Process: 21]	[O]	Captured by Candidate Process: 16.
+[Process: 1]	[C]	Was Killed
+[Process: 4]	[O]	Captured by Candidate Process: 22.
+[Process: 20]	[C]	Was Killed
+[Process: 3]	[C]	Received a kill Message, but was already killed.
+[Process: 24]	[C]	Was Killed
+[Process: 22]	[C]	Was Killed
+[Process: 29]	[O]	Captured by Candidate Process: 48.
+[Process: 4]	[C]	Was Killed
+[Process: 50]	[O]	Captured by Candidate Process: 16.
+[Process: 26]	[O]	Captured by Candidate Process: 36.
+[Process: 5]	[C]	Was Killed
+[Process: 27]	[O]	Captured by Candidate Process: 21.
+[Process: 10]	[O]	Captured by Candidate Process: 12.
+[Process: 41]	[C]	Was Killed
+[Process: 5]	[O]	Captured by Candidate Process: 32.
+[Process: 17]	[O]	Captured by Candidate Process: 42.
+[Process: 22]	[C]	Received a kill Message, but was already killed.
+[Process: 39]	[O]	Captured by Candidate Process: 36.
+[Process: 30]	[O]	Captured by Candidate Process: 29.
+[Process: 46]	[O]	Captured by Candidate Process: 12.
+[Process: 22]	[C]	Received a kill Message, but was already killed.
+[Process: 12]	[C]	Was Killed
+[Process: 41]	[C]	Received a kill Message, but was already killed.
+[Process: 10]	[O]	Captured by Candidate Process: 32.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 22]	[C]	Received a kill Message, but was already killed.
+[Process: 14]	[O]	Captured by Candidate Process: 36.
+[Process: 41]	[C]	Received a kill Message, but was already killed.
+[Process: 4]	[O]	Captured by Candidate Process: 16.
+[Process: 45]	[O]	Captured by Candidate Process: 32.
+[Process: 34]	[O]	Captured by Candidate Process: 42.
+[Process: 22]	[C]	Received a kill Message, but was already killed.
+[Process: 11]	[O]	Captured by Candidate Process: 48.
+[Process: 12]	[C]	Received a kill Message, but was already killed.
+[Process: 27]	[C]	Was Killed
+[Process: 13]	[O]	Captured by Candidate Process: 36.
+[Process: 21]	[C]	Was Killed
+[Process: 31]	[O]	Captured by Candidate Process: 16.
+[Process: 12]	[O]	Captured by Candidate Process: 42.
+[Process: 32]	[C]	Was Killed
+[Process: 10]	[O]	Captured by Candidate Process: 36.
+[Process: 33]	[C]	Was Killed
+[Process: 40]	[O]	Captured by Candidate Process: 42.
+[Process: 21]	[C]	Received a kill Message, but was already killed.
+[Process: 27]	[O]	Captured by Candidate Process: 36.
+[Process: 15]	[O]	Captured by Candidate Process: 36.
+[Process: 48]	[C]	Was Killed
+[Process: 29]	[O]	Captured by Candidate Process: 42.
+[Process: 19]	[C]	Was Killed
+[Process: 35]	[O]	Captured by Candidate Process: 36.
+[Process: 17]	[C]	Was Killed
+[Process: 18]	[O]	Captured by Candidate Process: 42.
+[Process: 42]	[C]	Was Killed
+[Process: 9]	[O]	Captured by Candidate Process: 36.
+[Process: 16]	[C]	Was Killed
+[Process: 4]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 12]	[O]	Captured by Candidate Process: 36.
+[Process: 22]	[O]	Captured by Candidate Process: 36.
+[Process: 23]	[O]	Captured by Candidate Process: 36.
+[Process: 6]	[C]	Was Killed
+[Process: 45]	[O]	Captured by Candidate Process: 36.
+[Process: 32]	[C]	Received a kill Message, but was already killed.
+[Process: 47]	[O]	Captured by Candidate Process: 36.
+[Process: 23]	[C]	Was Killed
+[Process: 24]	[O]	Captured by Candidate Process: 36.
+[Process: 8]	[C]	Was Killed
+[Process: 1]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 34]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 29]	[O]	Captured by Candidate Process: 36.
+[Process: 16]	[C]	Received a kill Message, but was already killed.
+[Process: 50]	[O]	Captured by Candidate Process: 36.
+[Process: 2]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 29]	[C]	Was Killed
+[Process: 38]	[O]	Captured by Candidate Process: 36.
+[Process: 49]	[O]	Captured by Candidate Process: 36.
+[Process: 7]	[C]	Was Killed
+[Process: 12]	[C]	Received a kill Message, but was already killed.
+[Process: 46]	[O]	Captured by Candidate Process: 36.
+[Process: 33]	[O]	Captured by Candidate Process: 36.
+[Process: 11]	[O]	Captured by Candidate Process: 36.
+[Process: 48]	[C]	Received a kill Message, but was already killed.
+[Process: 48]	[C]	Received a kill Message, but was already killed.
+[Process: 16]	[O]	Captured by Candidate Process: 36.
+[Process: 25]	[O]	Captured by Candidate Process: 36.
+[Process: 16]	[C]	Received a kill Message, but was already killed.
+[Process: 2]	[C]	Was Killed
+[Process: 3]	[O]	Captured by Candidate Process: 36.
+[Process: 48]	[C]	Received a kill Message, but was already killed.
+[Process: 44]	[O]	Captured by Candidate Process: 36.
+[Process: 47]	[C]	Was Killed
+[Process: 6]	[O]	Captured by Candidate Process: 36.
+[Process: 45]	[C]	Was Killed
+[Process: 8]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 40]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[O]	Captured by Candidate Process: 36.
+[Process: 32]	[C]	Received a kill Message, but was already killed.
+[Process: 48]	[O]	Captured by Candidate Process: 36.
+[Process: 20]	[C]	Received a kill Message, but was already killed.
+[Process: 17]	[O]	Captured by Candidate Process: 36.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 42]	[C]	Received a kill Message, but was already killed.
+[Process: 18]	[O]	Captured by Candidate Process: 36.
+[Process: 16]	[C]	Received a kill Message, but was already killed.
+[Process: 21]	[O]	Captured by Candidate Process: 36.
+[Process: 23]	[C]	Received a kill Message, but was already killed.
+[Process: 28]	[O]	Captured by Candidate Process: 36.
+[Process: 16]	[C]	Received a kill Message, but was already killed.
+[Process: 31]	[O]	Captured by Candidate Process: 36.
+[Process: 32]	[C]	Received a kill Message, but was already killed.
+[Process: 5]	[O]	Captured by Candidate Process: 36.
+[Process: 47]	[C]	Received a kill Message, but was already killed.
+[Process: 37]	[O]	Captured by Candidate Process: 36.
+[Process: 41]	[O]	Captured by Candidate Process: 36.
+[Process: 29]	[C]	Received a kill Message, but was already killed.
+[Process: 30]	[O]	Captured by Candidate Process: 36.
+[Process: 20]	[O]	Captured by Candidate Process: 36.
+[Process: 19]	[O]	Captured by Candidate Process: 36.
+[Process: 40]	[C]	Was Killed
+[Process: 32]	[O]	Captured by Candidate Process: 36.
+[Process: 29]	[C]	Received a kill Message, but was already killed.
+[Process: 36]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 2]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 3]	[C]	Level = 2.	Times Captured = 2.	Acks = 3.
+[Process: 4]	[C]	Level = 3.	Times Captured = 3.	Acks = 4.
+[Process: 5]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 6]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 7]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 8]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 9]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 10]	[C]	Level = 2.	Times Captured = 4.	Acks = 2.
+[Process: 11]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 12]	[C]	Level = 3.	Times Captured = 3.	Acks = 5.
+[Process: 13]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 14]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 15]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 16]	[C]	Level = 6.	Times Captured = 3.	Acks = 10.
+[Process: 17]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 18]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 19]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 20]	[C]	Level = 3.	Times Captured = 1.	Acks = 4.
+[Process: 21]	[C]	Level = 3.	Times Captured = 3.	Acks = 4.
+[Process: 22]	[C]	Level = 3.	Times Captured = 1.	Acks = 7.
+[Process: 23]	[C]	Level = 3.	Times Captured = 2.	Acks = 4.
+[Process: 24]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 25]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 26]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 27]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 28]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 29]	[C]	Level = 4.	Times Captured = 4.	Acks = 6.
+[Process: 30]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 31]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 32]	[C]	Level = 5.	Times Captured = 2.	Acks = 8.
+[Process: 33]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 34]	[C]	Level = 1.	Times Captured = 4.	Acks = 0.
+[Process: 35]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 36]	[C]	Level = 50.	Times Captured = 1.	Acks = 49.
+[Process: 37]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 38]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 39]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 40]	[C]	Level = 2.	Times Captured = 3.	Acks = 2.
+[Process: 41]	[C]	Level = 3.	Times Captured = 1.	Acks = 5.
+[Process: 42]	[C]	Level = 9.	Times Captured = 2.	Acks = 16.
+[Process: 43]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 44]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 45]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 46]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 47]	[C]	Level = 3.	Times Captured = 2.	Acks = 4.
+[Process: 48]	[C]	Level = 5.	Times Captured = 2.	Acks = 8.
+[Process: 49]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 50]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[INFO]		[ ]	Level Sum - Number of Processes = 106.	Captures Sum = 110.	Total Kills = 63	Total Acks = 169.
+Missed captures: 4

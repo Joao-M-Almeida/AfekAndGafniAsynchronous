@@ -19,6 +19,9 @@ public class Init {
 	public static boolean ConnectionsReady = false;
 	public static int msgN;
 	public static int[] timestamp;
+	public static int totalC;
+	public static int totalK;
+	public static int totalA;
 	
 	public static boolean DEBUG;
 	public static boolean ElectionOver;
@@ -29,6 +32,12 @@ public class Init {
 	public static Integer Lsum = 0;
 	public static Integer Csum = 0;
 	
+	public synchronized static void lCounter(Integer num){
+		Lsum  = Lsum + num;
+	}
+	public synchronized static void cCounter(Integer num){
+		Csum  = Csum + num;
+	}
 	
 	public static void createOThread(){
 		int i,aux_int;
