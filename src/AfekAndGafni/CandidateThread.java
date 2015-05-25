@@ -40,7 +40,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 10));
+			Thread.sleep((long)(Math.random() * 1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
