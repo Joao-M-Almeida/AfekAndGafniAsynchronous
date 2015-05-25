@@ -45,7 +45,7 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 			throws RemoteException {
 		int yolo;
 		//yolo = to.getId()-1;
-		System.err.println("to,level,id,link = " +  to.getId()+","+level+","+id.getId()+","+link.getId());
+		//System.err.println("to,level,id,link = " +  to.getId()+","+level+","+id.getId()+","+link.getId());
 		C[to.getId()-1].receiveCandidateMessage(level,id,link);		
 		//System.err.println("to.detId()-1 = " +  yolo);
 	}
