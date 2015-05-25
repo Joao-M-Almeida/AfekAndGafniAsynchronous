@@ -135,7 +135,7 @@ public class CandidateThread implements Runnable {
 							e.printStackTrace();
 						}
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + IdAux  + ".");
-						stubSet[IdAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
+						stubSet[LinkAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
 						if(!killed){
 							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
 						}else{
