@@ -1,16 +1,16 @@
 \section*{Tests}
 
-To guarantee the quality of our implementation we ran multiple test, a summary of those tests is present in Table \ref{tab:testtable}.
+To guarantee the quality of our implementation we ran multiple tests, a summary of those tests is present in Table \ref{tab:testtable}.
 
 For each test we measured a series of parameters to evaluate the output of algorithm. The parameters where:
 
 \begin{itemize}
-\item{\textbf{Number of Level Increases:}} Sum of the levels of all processes 
-\item{\textbf{Number of Capture Messages:}} Number of capture messages sent by all candidate nodes
-\item{\textbf{Number of Captures:}} Number of captures that were successful, measured by the ordinary nodes
-\item{\textbf{Number of Kill messages:}} Number of messages sent by ordinary nodes to kill their previous owner
-\item{\textbf{Number of Acknowledgment messages:}}
-\item{\textbf{Number of Capture/Level Discrepancies:}} The difference between the number of captures and number of level increases 
+\item{\textbf{Number of Level Increases:}} Sum of the levels of all processes. 
+%\item{\textbf{Number of Capture Messages:}} Number of capture messages sent by all candidate nodes.
+\item{\textbf{Number of Captures:}} Number of captures that were successful, measured by the ordinary nodes.
+\item{\textbf{Number of Kill messages:}} Number of messages sent by ordinary nodes to kill their previous owner.
+\item{\textbf{Number of Acknowledgment messages:}} Number of Acknowledgment messages sent for each kill or capture message.
+\item{\textbf{Number of Capture/Level Discrepancies:}} The difference between the number of captures and number of level increases.
 
 \end{itemize}
 
@@ -19,35 +19,98 @@ For each test we measured a series of parameters to evaluate the output of algor
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c|c|c|c|c|c|c|c}
 Test \# & \# Machines & Total \# Processes & \#Level increases & \# Captures & \# Kills & \# Acks & \begin{tabular}[c]{@{}c@{}}\#Capture/Level \\ Discrepancies\end{tabular} \\ \hline
-1 & 1 & 10 &  &  &  &  &  \\ \hline
-2 & 2 & 10 &  &  &  &  &  \\ \hline
-3 & 1 & 10 &  &  &  &  &  \\ \hline
-4 & 1 & 20 &  &  &  &  &  \\ \hline
-5 & 1 & 50 &  &  &  &  &  \\ \hline
-6 & 1 & 100 &  &  &  &  &  \\ \hline
-7 & 1 & 250 &  &  &  &  &  \\ \hline
-8 & 1 & 500 &  &  &  &  &  \\ \hline
-9 & 1 & 1000 &  &  &  &  & 
+1 & 1 & 2 & 1 & 1 & 0 & 1 & 0 \\ \hline
+2 & 1 & 5 & 8 & 8 & 3 & 11 & 0 \\ \hline
+3 & 2 & 10 & 17 & 17 & 7 & 24 & 0 \\ \hline
+4 & 1 & 10 & 16 & 16 & 9 & 25 & 0 \\ \hline
+5 & 1 & 20 & 35 & 35 & 16 & 51 & 0 \\ \hline
+6 & 1 & 50 & 106 & 110 & 63 & 169 & 4 \\ \hline
+7 & 1 & 100 & 213 & 221 & 125 & 338 & 8 \\ \hline
+8 & 1 & 250 & 543 & 565 & 322 & 865 & 22 \\ \hline
+9 & 1 & 500 & 1128 & 1180 & 690 & 1818 & 52 \\ \hline
+10 & 1 & 750 & 1712 & 1794 & 1063 & 2775 & 82
 \end{tabular}
 }
-\caption{}\label{tab:testtable}
+\caption{Tests summary}\label{tab:testtable}
 \end{table}
 
-As you can see there is a difference between the number
+As you can see there is a difference between the number of captures and the level increases, for the larger tests Theoretically these should be the same, however due to a known problem of synchronization some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
 
-\begin{Verbatim}[frame=single]
-[Process: 3]	[C]	Is now a Candidate.
-[Process: 4]	[O]	Captured by Candidate Process: 3.
-[Process: 2]	[O]	Captured by Candidate Process: 3.
-[Process: 1]	[O]	Captured by Candidate Process: 3.
-[Process: 5]	[O]	Captured by Candidate Process: 3.
-[Process: 3]	[C]	Elected!! 
-[Process: 1]	[C]	Level = 0.	Times Captured = 1.
-[Process: 2]	[C]	Level = 0.	Times Captured = 1.
-[Process: 3]	[C]	Level = 5.	Times Captured = 0.
-[Process: 4]	[C]	Level = 0.	Times Captured = 1.
-[Process: 5]	[C]	Level = 0.	Times Captured = 1.
-[INFO]		[ ]	Level Sum = 5.	Captures Sum = 4.
+\vspace{10pt}
+
+\begin{Verbatim}[frame=single,label=Test 1 output]
+[INFO]	  	Connections Ready
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 2]	[O]	Captured by Candidate Process: 1.
+[Process: 1]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 2. Times Captured = 0. Acks = 1.
+[Process: 2]	[C]	Level = 1. Times Captured = 1. Acks = 0.
+[INFO]		
+Level Sum - Number of Processes = 1.	
+Captures Sum = 1	
+Total Kills = 0	
+Total Acks = 1
+Missed captures: 0
 \end{Verbatim}
+
+\newpage
+
+\begin{Verbatim}[frame=single,label=Test 4 output]
+[INFO]	  	Connections Ready
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 2]	[C]	Is now a Candidate.
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 10]	[C]	Is now a Candidate.
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 5]	[O]	Captured by Candidate Process: 4.
+[Process: 8]	[O]	Captured by Candidate Process: 1.
+[Process: 9]	[O]	Captured by Candidate Process: 2.
+[Process: 2]	[O]	Captured by Candidate Process: 5.
+[Process: 4]	[O]	Captured by Candidate Process: 9.
+[Process: 6]	[O]	Captured by Candidate Process: 7.
+[Process: 3]	[O]	Captured by Candidate Process: 4.
+[Process: 10]	[O]	Captured by Candidate Process: 7.
+[Process: 1]	[O]	Captured by Candidate Process: 2.
+[Process: 1]	[C]	Was Killed
+[Process: 1]	[C]	Received a kill Message, but was already killed.
+[Process: 8]	[O]	Captured by Candidate Process: 7.
+[Process: 1]	[C]	Received a kill Message, but was already killed.
+[Process: 1]	[O]	Captured by Candidate Process: 7.
+[Process: 2]	[C]	Was Killed
+[Process: 5]	[O]	Captured by Candidate Process: 7.
+[Process: 4]	[C]	Was Killed
+[Process: 2]	[O]	Captured by Candidate Process: 7.
+[Process: 5]	[C]	Was Killed
+[Process: 9]	[O]	Captured by Candidate Process: 7.
+[Process: 2]	[C]	Received a kill Message, but was already killed.
+[Process: 4]	[O]	Captured by Candidate Process: 7.
+[Process: 9]	[C]	Was Killed
+[Process: 3]	[O]	Captured by Candidate Process: 7.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 7]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 2. Times Captured = 2. Acks = 4.
+[Process: 2]	[C]	Level = 3. Times Captured = 2. Acks = 4.
+[Process: 3]	[C]	Level = 1. Times Captured = 2. Acks = 0.
+[Process: 4]	[C]	Level = 3. Times Captured = 2. Acks = 4.
+[Process: 5]	[C]	Level = 2. Times Captured = 2. Acks = 2.
+[Process: 6]	[C]	Level = 1. Times Captured = 1. Acks = 0.
+[Process: 7]	[C]	Level = 10. Times Captured = 0. Acks = 9.
+[Process: 8]	[C]	Level = 1. Times Captured = 2. Acks = 0.
+[Process: 9]	[C]	Level = 2. Times Captured = 2. Acks = 2.
+[Process: 10]	[C]	Level = 1. Times Captured = 1. Acks = 0.
+[INFO]		
+Level Sum - Number of Processes = 16	
+Captures Sum = 16
+Total Kills = 9	
+Total Acks = 25
+Missed captures: 0
+\end{Verbatim}
+
+
 
 
