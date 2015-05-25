@@ -41,9 +41,9 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 		O=o;
 	}
 
-	public void sendToCandidate(ProcessID to, int level, ProcessID id)
+	public void sendToCandidate(ProcessID to, int level, ProcessID id,ProcessID me)
 			throws RemoteException {
-		C[to.getId()-1].receiveCandidateMessage(level,id);		
+		C[to.getId()-1].receiveCandidateMessage(level,id,me);		
 		
 	}
 	

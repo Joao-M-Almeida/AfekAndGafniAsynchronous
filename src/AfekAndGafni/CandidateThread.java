@@ -19,6 +19,7 @@ public class CandidateThread implements Runnable {
 	private ProcessID nextVictim;
 	private int nextVictimIndex;
 	Random r;
+	private ArrayList<ProcessID> fromList;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		
@@ -27,13 +28,14 @@ public class CandidateThread implements Runnable {
 		untraversed= new ArrayList<ProcessID>();
 		LevelList = new ArrayList<Integer>();
 		IdList = new ArrayList<ProcessID>();
+		fromList = new ArrayList<ProcessID>();
 		r=new Random();
 	}
 	
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 0));
+			Thread.sleep((long)(Math.random() * 1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -74,6 +76,7 @@ public class CandidateThread implements Runnable {
 	public void WaitAnswer() throws RemoteException{
 		Integer LevelAux;
 		ProcessID IdAux;
+		ProcessID fromAux;
 		while(true){
 			
 			try {
@@ -86,6 +89,7 @@ public class CandidateThread implements Runnable {
 				/* Answer Received */
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
+				fromAux = this.RemoveElementfrom();
 		
 				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
@@ -121,10 +125,9 @@ public class CandidateThread implements Runnable {
 						}
 
 					}else{
-						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + IdAux  + ".");
-						stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, LevelAux, IdAux);
-						if(Init.DEBUG)
-							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
+						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + fromAux  + ".");
+						stubSet[IdAux.getId()-1].sendToOrdinary(fromAux, LevelAux, IdAux);
+						System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
 						killed = true;
 					}
 				}
@@ -132,7 +135,11 @@ public class CandidateThread implements Runnable {
 		}
 	}
 	
-	/*Returns true if Candidate's (level,id) is bigger, false otherwise*/
+	private synchronized ProcessID RemoveElementfrom() {
+		return fromList.remove(0);
+	}
+
+	/*Returns true if Candidate's (mylevel,me) is bigger, false otherwise*/
 	public boolean CompareLevelId(ProcessID me, Integer myLevel, ProcessID IdAux, Integer LevelAux ){
 		if(myLevel  > LevelAux){
 			return true;
@@ -150,10 +157,11 @@ public class CandidateThread implements Runnable {
 		return IdList.remove(0);
 	}
 
-	public synchronized void receiveCandidateMessage(int level, ProcessID id) {
+	public synchronized void receiveCandidateMessage(int level, ProcessID id,ProcessID from) {
 		if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Received Message (Level, ID): (" + level + "," +id.getId() + ")." );
 		LevelList.add(level);
 		IdList.add(id);
+		fromList.add(from);
 	}
 	
 	public void killall() throws RemoteException{

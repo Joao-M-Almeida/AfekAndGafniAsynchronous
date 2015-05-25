@@ -74,7 +74,7 @@ public class OrdinaryThread implements Runnable {
 	public synchronized void SendToOwner(ProcessID Owner, Integer Level, ProcessID id){
 		try {
 			if(Init.DEBUG)System.out.println("[" + OrdinaryId + "]\t[O]\tSent to Owner " + Owner + " (Level, ID): ("+Level.intValue() +","+id.getId() +").");
-			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id);
+			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id, OrdinaryId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
