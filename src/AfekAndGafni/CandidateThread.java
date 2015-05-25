@@ -7,7 +7,7 @@ import java.util.Random;
 
 
 public class CandidateThread implements Runnable {
-
+	
 	ArrayList<Integer> LevelList;
 	ArrayList<ProcessID> IdList;
 	ArrayList<ProcessID> LinkList;
@@ -16,10 +16,12 @@ public class CandidateThread implements Runnable {
 	ProcessID me;
 	boolean killed = false;
 	boolean elected = false;
-	Integer myLevel;
+	Integer myLevel = 0;
 	private ProcessID nextVictim;
 	private int nextVictimIndex;
 	Random r;
+	int Lsum = 0;
+	int Csum = 0;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
 		this.stubSet = stubSet;
@@ -111,11 +113,6 @@ public class CandidateThread implements Runnable {
 						nextVictimIndex = r.nextInt(untraversed.size());
 						nextVictim = untraversed.get(nextVictimIndex);
 						try {
-							try {
-								Thread.sleep((long)(Math.random() * 100));
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
 							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
 							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me, me);
 
@@ -128,13 +125,8 @@ public class CandidateThread implements Runnable {
 						// When does this happen?
 						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Something probably went wrong... Check me.");
 
-					}else{
-						try {
-							Thread.sleep((long)(Math.random() * 100));
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + IdAux  + ".");
+					}else if(IdAux.getId() != me.getId()){
+						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + LinkAux  + ".");
 						stubSet[LinkAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
 						if(!killed){
 							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
@@ -183,6 +175,12 @@ public class CandidateThread implements Runnable {
 	
 	public synchronized void Kill(){
 		Init.ElectionOver = true;
+		System.out.println("[Process: " + me.getId() + "]\t[C]\tLevel = " + myLevel + ".\tTimes Captured = " + Init.O[me.getId()-1].captured + ".");
+		Init.Lsum = Init.Lsum + myLevel;
+		Init.Csum =  Init.Csum + Init.O[me.getId()-1].captured;
+		if(me.getId() == Init.NumberOfProcesses){
+			System.out.println("[INFO]\t\t[ ]\tLevel Sum = " + Init.Lsum + ".\tCaptures Sum = " + Init.Csum + ".");
+		}
 	}
 
 

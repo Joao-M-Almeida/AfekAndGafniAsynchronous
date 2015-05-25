@@ -13,6 +13,7 @@ public class OrdinaryThread implements Runnable {
 	ProcessID Owner = null;
 	ProcessID Owner_Id;
 	AfekAndGafniRMI[] Stubs;
+	int captured = 0;
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
 		this.Stubs = stub;
@@ -64,11 +65,7 @@ public class OrdinaryThread implements Runnable {
 					if(Owner == null){
 						Owner = PotencialOwner;
 						System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
-					}
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+						captured++;
 					}
 					SendToOwner(Owner, LevelAux, IdAux);
 
@@ -77,11 +74,7 @@ public class OrdinaryThread implements Runnable {
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
 					Owner = PotencialOwner;
 					System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
-					try {
-						Thread.sleep((long)(Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					captured++;
 					if(Owner == null){
 						System.err.println("(Level',Id') = (" + LevelAux + "," + IdAux.getId() + ")\t(Level, Id) = (" + OrdinaryLevel+","+ Owner_Id.getId());
 					}

@@ -26,6 +26,8 @@ public class Init {
 	public static OrdinaryThread[] O; // Contains a pointer to the thread of each process on this machine. Process 1 on index 0
 	public static CandidateThread[] C;
 	public static boolean[] requested;
+	public static Integer Lsum = 0;
+	public static Integer Csum = 0;
 	
 	
 	public static void createOThread(){
@@ -52,7 +54,7 @@ public class Init {
 		boolean failed_connection = false;
 		boolean failed_lookup = false;
 		
-		DEBUG=true;
+		DEBUG=false;
 		
 		
 		NumberOfMachines = Integer.parseInt(args[0]);
