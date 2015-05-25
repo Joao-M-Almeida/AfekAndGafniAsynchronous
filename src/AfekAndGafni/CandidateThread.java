@@ -10,6 +10,7 @@ public class CandidateThread implements Runnable {
 
 	ArrayList<Integer> LevelList;
 	ArrayList<ProcessID> IdList;
+	ArrayList<ProcessID> LinkList;
 	AfekAndGafniRMI[] stubSet;
 	ArrayList<ProcessID> untraversed;
 	ProcessID me;
@@ -21,12 +22,12 @@ public class CandidateThread implements Runnable {
 	Random r;
 	 
 	public CandidateThread(AfekAndGafniRMI[] stubSet, ProcessID me) {
-		
 		this.stubSet = stubSet;
 		this.me = me;
 		untraversed= new ArrayList<ProcessID>();
 		LevelList = new ArrayList<Integer>();
 		IdList = new ArrayList<ProcessID>();
+		LinkList = new ArrayList<ProcessID>();
 		r=new Random();
 	}
 	
@@ -51,12 +52,12 @@ public class CandidateThread implements Runnable {
 		myLevel=1;
 		
 		for(int i=0;i<Init.NumberOfProcesses;i++) {
-			if(me.getId() != i){
+			if(me.getId() != i+1){
 				untraversed.add(new ProcessID(i+1));
 			}
 		}
 		
-		//if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
+		//System.out.println("[Process: " + me.getId() + "]\t[C]\t" +  "Has to traverse " + untraversed + ".");
 		
 		if(!untraversed.isEmpty()){
 			nextVictimIndex = r.nextInt(untraversed.size());
@@ -64,7 +65,7 @@ public class CandidateThread implements Runnable {
 
 			try {
 				if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + nextVictim  + ".");
-				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+				stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me,me);
 				WaitAnswer();
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -75,6 +76,7 @@ public class CandidateThread implements Runnable {
 	public void WaitAnswer() throws RemoteException{
 		Integer LevelAux;
 		ProcessID IdAux;
+		ProcessID LinkAux;
 		while(true){
 			
 			try {
@@ -87,10 +89,11 @@ public class CandidateThread implements Runnable {
 				/* Answer Received */
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
+				LinkAux = this.LinkList.remove(0);
 		
 				if( me.getId() == IdAux.getId() && killed == false){
 					myLevel++;
-					Init.O[me.getId()-1].OrdinaryLevel = myLevel;
+					//Init.O[me.getId()-1].OrdinaryLevel = myLevel;
 					
 					if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Incremented level to: " + myLevel + ".");
 					untraversed.remove(nextVictimIndex);
@@ -114,7 +117,7 @@ public class CandidateThread implements Runnable {
 								e.printStackTrace();
 							}
 							if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Trying to capture Process " + nextVictim + " with Message (Level,ID): (" + myLevel + "," + me.getId() + ").");
-							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me);
+							stubSet[nextVictim.getId()-1].sendToOrdinary(nextVictim, myLevel, me, me);
 
 						} catch (RemoteException e) {
 							e.printStackTrace();
@@ -131,9 +134,14 @@ public class CandidateThread implements Runnable {
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ myLevel + "," + me.getId() + ") to Candidate " + IdAux  + ".");
-						stubSet[IdAux.getId()-1].sendToOrdinary(IdAux, LevelAux, IdAux);
-						System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
+						if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Sent Message (Level, ID): ("+ LevelAux + "," + IdAux.getId() + ") to Ordinary " + IdAux  + ".");
+						stubSet[IdAux.getId()-1].sendToOrdinary(LinkAux, LevelAux, IdAux, me);
+						if(!killed){
+							System.out.println( "[Process: " + me.getId() + "]\t[C]\tWas Killed" );
+						}else{
+							System.out.println( "[Process: " + me.getId() + "]\t[C]\tReceived a kill Message, but was already killed." );
+						}
+						
 						killed = true;
 					}
 				}
@@ -159,11 +167,11 @@ public class CandidateThread implements Runnable {
 		return IdList.remove(0);
 	}
 
-	public synchronized void receiveCandidateMessage(int level, ProcessID id) {
+	public synchronized void receiveCandidateMessage(int level, ProcessID id, ProcessID link) {
 		if(Init.DEBUG) System.out.println("[Process: " + me.getId() + "]\t[C]\t" + "Received Message (Level, ID): (" + level + "," +id.getId() + ")." );
 		LevelList.add(level);
 		IdList.add(id);
-		LevelList.add(level);
+		LinkList.add(link);
 	}
 	
 	public void killall() throws RemoteException{

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class OrdinaryThread implements Runnable {
 	ArrayList<Integer> LevelList;
 	ArrayList<ProcessID> IdList;
+	ArrayList<ProcessID> LinkList;
 	ProcessID OrdinaryId;
 	int OrdinaryLevel = 0;
 	ProcessID PotencialOwner;
@@ -19,12 +20,14 @@ public class OrdinaryThread implements Runnable {
 		this.Owner_Id = aux_pid;
 		
 		this.LevelList = new ArrayList<Integer>();
+		this.LinkList = new ArrayList<ProcessID>();
 		this.IdList = new ArrayList<ProcessID>();
 	}
 
 	public void run() {
 		Integer LevelAux;
 		ProcessID IdAux;
+		ProcessID LinkAux;
 		while(true) {
 			
 			while(!Init.ConnectionsReady){
@@ -40,6 +43,7 @@ public class OrdinaryThread implements Runnable {
 
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
+				LinkAux = this.LinkList.remove(0);
 
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
@@ -53,7 +57,7 @@ public class OrdinaryThread implements Runnable {
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
-					PotencialOwner = IdAux;
+					PotencialOwner = LinkAux;
 					/* (level, owner-id) = (level', id') */
 					OrdinaryLevel = LevelAux;
 					Owner_Id = IdAux;
@@ -78,6 +82,9 @@ public class OrdinaryThread implements Runnable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					if(Owner == null){
+						System.err.println("(Level',Id') = (" + LevelAux + "," + IdAux.getId() + ")\t(Level, Id) = (" + OrdinaryLevel+","+ Owner_Id.getId());
+					}
 					SendToOwner(Owner, LevelAux, IdAux);
 				}
 
@@ -88,17 +95,18 @@ public class OrdinaryThread implements Runnable {
 
 	public synchronized void SendToOwner(ProcessID Owner, Integer Level, ProcessID id){
 		try {
-			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id);
+			Stubs[id.getId()-1].sendToCandidate(Owner, Level, id, OrdinaryId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return;
 	}
 
-	public synchronized void receiveOrdinaryMessage(int level, ProcessID id) {
+	public synchronized void receiveOrdinaryMessage(int level, ProcessID id, ProcessID link) {
 		if(Init.DEBUG) System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tReceived Message (Level,ID): (" + level + "," +id.getId() + ")." );
 		this.LevelList.add(level);
 		this.IdList.add(id);
+		this.LinkList.add(link);
 	}
 
 	public synchronized Integer RemoveElementLevel(){

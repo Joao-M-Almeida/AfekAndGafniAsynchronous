@@ -41,10 +41,12 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 		O=o;
 	}
 
-	public void sendToCandidate(ProcessID to, int level, ProcessID id)
+	public void sendToCandidate(ProcessID to, int level, ProcessID id, ProcessID link)
 			throws RemoteException {
-		C[to.getId()-1].receiveCandidateMessage(level,id);		
-		
+		int yolo;
+		//yolo = to.getId()-1;
+		C[to.getId()-1].receiveCandidateMessage(level,id,link);		
+		//System.err.println("to.detId()-1 = " +  yolo);
 	}
 	
 	public void ElectionOver(int id) throws RemoteException {
@@ -52,9 +54,9 @@ public class Server extends UnicastRemoteObject implements AfekAndGafniRMI, Runn
 	}
 
 
-	public void sendToOrdinary(ProcessID to, int level, ProcessID id)
+	public void sendToOrdinary(ProcessID to, int level, ProcessID id, ProcessID link)
 			throws RemoteException {
-		O[to.getId()-1].receiveOrdinaryMessage(level,id);
+		O[to.getId()-1].receiveOrdinaryMessage(level,id, link);
 	}
 
 
