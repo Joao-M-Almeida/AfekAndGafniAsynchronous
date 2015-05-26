@@ -82,3 +82,135 @@ Missed captures: 0
 	\vspace{10pt}
 
 	With this example from \textit{Test 4} we want to prove that even if all candidates start the election at the same time, the algorithm still works as expected.
+
+	\vspace{10pt}
+	
+	\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8},frame=single,label=Test 6 output]
+	
+[INFO]	  	Connections Ready
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 36]       [C]	Is now a Candidate.
+[Process: 40]       [O]	Captured by Candidate Process: 36.
+[Process: 48]       [O]	Captured by Candidate Process: 36.
+[Process: 2]	[O]	Captured by Candidate Process: 4.
+[Process: 7]	[O]	Captured by Candidate Process: 36.
+[Process: 18]       [O]	Captured by Candidate Process: 4.
+[Process: 12]       [O]	Captured by Candidate Process: 36.
+[Process: 33]       [O]	Captured by Candidate Process: 4.
+[Process: 22]       [O]	Captured by Candidate Process: 4.
+[Process: 13]       [O]	Captured by Candidate Process: 36.
+[Process: 6]	[O]	Captured by Candidate Process: 4.
+[Process: 21]       [O]	Captured by Candidate Process: 36.
+[Process: 20]       [O]	Captured by Candidate Process: 36.
+[Process: 4]	[O]	Captured by Candidate Process: 36.
+[Process: 4]	[C]	Was Killed
+[Process: 22]       [O]	Captured by Candidate Process: 36.
+[Process: 8]	[O]	Captured by Candidate Process: 36.
+[Process: 37]       [O]	Captured by Candidate Process: 36.
+[Process: 23]       [O]	Captured by Candidate Process: 36.
+[Process: 47]       [O]	Captured by Candidate Process: 36.
+[Process: 16]       [O]	Captured by Candidate Process: 36.
+[Process: 34]       [O]	Captured by Candidate Process: 36.
+[Process: 15]       [O]	Captured by Candidate Process: 36.
+[Process: 14]       [O]	Captured by Candidate Process: 36.
+[Process: 31]       [O]	Captured by Candidate Process: 36.
+[Process: 30]       [O]	Captured by Candidate Process: 36.
+[Process: 24]       [O]	Captured by Candidate Process: 36.
+[Process: 2]	[O]	Captured by Candidate Process: 36.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 49]       [O]	Captured by Candidate Process: 36.
+[Process: 26]       [O]	Captured by Candidate Process: 36.
+[Process: 44]       [O]	Captured by Candidate Process: 36.
+[Process: 43]       [O]	Captured by Candidate Process: 36.
+[Process: 29]       [O]	Captured by Candidate Process: 36.
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 45]       [O]	Captured by Candidate Process: 36.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 27]       [O]	Captured by Candidate Process: 3.
+[Process: 38]       [O]	Captured by Candidate Process: 36.
+[Process: 17]       [O]	Captured by Candidate Process: 36.
+[Process: 11]       [O]	Captured by Candidate Process: 36.
+[Process: 27]       [O]	Captured by Candidate Process: 36.
+[Process: 3]	[C]	Was Killed
+[Process: 6]	[O]	Captured by Candidate Process: 36.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 41]       [O]	Captured by Candidate Process: 36.
+[Process: 50]       [O]	Captured by Candidate Process: 36.
+[Process: 1]	[O]	Captured by Candidate Process: 36.
+[Process: 33]       [O]	Captured by Candidate Process: 36.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 28]       [O]	Captured by Candidate Process: 36.
+[Process: 25]       [O]	Captured by Candidate Process: 36.
+[Process: 10]       [O]	Captured by Candidate Process: 36.
+[Process: 42]       [O]	Captured by Candidate Process: 36.
+[Process: 9]	[O]	Captured by Candidate Process: 36.
+[Process: 19]       [O]	Captured by Candidate Process: 36.
+[Process: 32]       [O]	Captured by Candidate Process: 36.
+[Process: 35]       [O]	Captured by Candidate Process: 36.
+[Process: 3]	[O]	Captured by Candidate Process: 36.
+[Process: 18]       [O]	Captured by Candidate Process: 36.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+[Process: 39]       [O]	Captured by Candidate Process: 36.
+[Process: 5]	[O]	Captured by Candidate Process: 36.
+[Process: 46]       [O]	Captured by Candidate Process: 36.
+[Process: 36]       [C]	Elected!! 
+[Process: 1]	[C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 2]	[C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 3]	[C]	Level = 2. Times Captured = 1.	Acks = 2.
+[Process: 4]	[C]	Level = 6. Times Captured = 1.	Acks = 10.
+[Process: 5]	[C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 6]	[C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 7]	[C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 8]	[C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 9]	[C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 10]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 11]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 12]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 13]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 14]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 15]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 16]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 17]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 18]       [C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 19]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 20]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 21]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 22]       [C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 23]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 24]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 25]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 26]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 27]       [C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 28]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 29]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 30]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 31]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 32]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 33]       [C]	Level = 1. Times Captured = 2.	Acks = 0.
+[Process: 34]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 35]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 36]       [C]	Level = 50. Times Captured = 0.	Acks = 49.
+[Process: 37]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 38]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 39]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 40]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 41]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 42]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 43]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 44]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 45]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 46]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 47]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 48]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 49]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[Process: 50]       [C]	Level = 1. Times Captured = 1.	Acks = 0.
+[INFO]		
+Level Sum - Number of Processes = 55.	
+Captures Sum = 55.	
+Total Kills = 6.	
+Total Acks = 61.
+Missed captures: 0.	
+	
+	\end{Verbatim}
+
+	\vspace{10pt}

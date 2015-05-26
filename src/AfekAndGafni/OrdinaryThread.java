@@ -42,7 +42,7 @@ public class OrdinaryThread implements Runnable {
 			
 			Thread.yield();
 			
-			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
+			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty() && !this.LinkList.isEmpty()){
 				/*Process Messages and remove them from the list*/
 
 				LevelAux = this.RemoveElementLevel();

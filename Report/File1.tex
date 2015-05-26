@@ -1,13 +1,13 @@
-\section*{Tests}
+\section*{Tests Introduction}
 
 	\vspace{10pt}
 
-	\indent To guarantee the quality of our implementation we ran multiple tests, a summary of those tests is present in Table \ref{tab:testtable}. To ensure the algorithm was implemented correctly, information regarding the state of the processes was printed during the execution of the algorithm. All these test are explained in the section \textit{Detailed Tests}.
+	\indent To guarantee the quality of our implementation we ran multiple tests, a summary of those tests is present in Table \ref{tab:testtable}. To ensure the algorithm was implemented correctly, information regarding the state of the processes was printed during the execution of the algorithm. All these tests are explained in the section \textit{Detailed Tests}.
 
 	For each test we measured a series of parameters to evaluate the output of the algorithm. The parameters are:
 
 	\begin{itemize}
-		\item{\textbf{Number of Level Increases:}} Sum of the \textit{Levels} of all processes. 
+		\item{\textbf{Number of Level Increases:}} Sum of the \textit{Levels} of all processes at the end of execution. 
 %\item{\textbf{Number of Capture Messages:}} Number of capture messages sent by all candidate nodes.
 		\item{\textbf{Number of Captures:}} Number of \textit{Captures} that were successful, measured by the ordinary processes.
 		\item{\textbf{Number of Kill messages:}} Number of messages sent by ordinary processes to \textit{Kill} their previous owner.
@@ -27,17 +27,17 @@
 		3 & 2 & 10 & 17 & 17 & 7 & 24 & 0 \\ \hline
 		4 & 1 & 10 & 16 & 16 & 9 & 25 & 0 \\ \hline
 		5 & 1 & 20 & 35 & 35 & 16 & 51 & 0 \\ \hline
-		6 & 1 & 50 & 106 & 110 & 63 & 169 & 4 \\ \hline
-		7 & 1 & 100 & 213 & 221 & 125 & 338 & 8 \\ \hline
-		8 & 1 & 250 & 543 & 565 & 322 & 865 & 22 \\ \hline
-		9 & 1 & 500 & 1128 & 1180 & 690 & 1818 & 52 \\ \hline 
-		10 & 1 & 750 & 1712 & 1794 & 1063 & 2775 & 82 \\ \hline
+		6 & 1 & 50 & 55 & 55 & 6 & 61 & 0 \\ \hline
+		7 & 1 & 100 & 143 & 145 & 45 & 188 & 2 \\ \hline
+		8 & 1 & 250 & 419 & 424 & 174 & 593 & 5 \\ \hline
+		9 & 1 & 500 & 949 & 972 & 473 & 1422 & 23 \\ \hline 
+		10 & 1 & 750 & 1555 & 1588 & 841 & 2396 & 33 \\ \hline
 		\end{tabular}
 		}
 		\caption{Tests summary}\label{tab:testtable}
 	\end{table}
 
-	As you can see there is a difference between the number of \textit{Captures} and the \textit{Level Increases}, for the larger tests. Theoretically these should be the same, however due to a known problem of synchronization some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
+	As you can see there is a difference between the number of \textit{Captures} and the \textit{Level Increases}, for the larger tests. Theoretically these should be the same, however due to a known problem of synchronization, some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
 
 	\newpage
 

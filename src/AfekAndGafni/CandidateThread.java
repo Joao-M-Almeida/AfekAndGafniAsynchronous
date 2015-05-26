@@ -87,7 +87,7 @@ public class CandidateThread implements Runnable {
 			
 			Thread.yield();
 		
-			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty()){
+			if(!this.LevelList.isEmpty() && !this.IdList.isEmpty() && !this.LinkList.isEmpty()){
 				/* Answer Received */
 				LevelAux = this.RemoveElementLevel();
 				IdAux = this.RemoveElementId();
@@ -139,7 +139,8 @@ public class CandidateThread implements Runnable {
 						ackS++;
 						killed = true;
 					}else{
-						count ++;
+						myLevel++;
+						//count ++;
 					}
 				}
 			}
