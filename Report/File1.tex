@@ -37,7 +37,7 @@
 		\caption{Tests summary}\label{tab:testtable}
 	\end{table}
 
-	As you can see there is a difference between the number of \textit{Captures} and the \textit{Level Increases}, for the larger tests. Theoretically these should be the same, however due to a known problem of synchronization, some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
-
+	In theory the formula $\#ACKS = \#KILLS+\#CAPTURES$ should be respected for all runs of the algorithm, however for larger tests there is a discrepancy in this formula. This results from a known problem of synchronization, some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
+	
 	\newpage
 
