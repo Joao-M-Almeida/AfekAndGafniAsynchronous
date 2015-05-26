@@ -1,18 +1,11 @@
 [INFO]	  	Connections Ready
-[Process: 1]	[C]	Is now a Candidate.
-[Process: 4]	[C]	Is now a Candidate.
-[Process: 5]	[C]	Is now a Candidate.
-[Process: 2]	[C]	Is now a Candidate.
-[Process: 3]	[C]	Is now a Candidate.
-[Process: 1]	[O]	Captured by Candidate Process: 4.
-[Process: 2]	[O]	Captured by Candidate Process: 1.
+[Process: 2]	[O]	Captured by Candidate Process: 7.
+[Process: 4]	[O]	Captured by Candidate Process: 7.
 [Process: 5]	[O]	Captured by Candidate Process: 7.
-[Process: 3]	[O]	Captured by Candidate Process: 10.
-[Process: 4]	[O]	Captured by Candidate Process: 6.
-[Process: 4]	[O]	Captured by Candidate Process: 1.
-[Process: 5]	[C]	Was Killed
-[Process: 5]	[C]	Received a kill Message, but was already killed.
-[Process: 3]	[O]	Captured by Candidate Process: 1.
-[Process: 5]	[O]	Captured by Candidate Process: 1.
-[Process: 5]	[C]	Received a kill Message, but was already killed.
-[Process: 1]	[C]	Elected!! 
+[Process: 1]	[O]	Captured by Candidate Process: 7.
+[Process: 3]	[O]	Captured by Candidate Process: 7.
+[Process: 1]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 2]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 3]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 4]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 5]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
