@@ -15,6 +15,7 @@ public class OrdinaryThread implements Runnable {
 	ProcessID Owner_Id;
 	AfekAndGafniRMI[] Stubs;
 	int captured = 0;
+	int missedCapture = 0;
 	int ack = 0;
 	
 	public OrdinaryThread(ProcessID aux_pid, AfekAndGafniRMI[] stub) {
@@ -52,6 +53,7 @@ public class OrdinaryThread implements Runnable {
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
 					/* Ignore */
+					missedCapture ++;
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */

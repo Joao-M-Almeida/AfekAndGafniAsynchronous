@@ -1,0 +1,83 @@
+[INFO]	  	Connections Ready
+[Process: 16]	[C]	Is now a Candidate.
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 13]	[C]	Is now a Candidate.
+[Process: 17]	[C]	Is now a Candidate.
+[Process: 10]	[C]	Is now a Candidate.
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 11]	[O]	Captured by Candidate Process: 16.
+[Process: 8]	[O]	Captured by Candidate Process: 13.
+[Process: 4]	[O]	Captured by Candidate Process: 6.
+[Process: 11]	[C]	Is now a Candidate.
+[Process: 18]	[O]	Captured by Candidate Process: 8.
+[Process: 16]	[O]	Captured by Candidate Process: 10.
+[Process: 19]	[O]	Captured by Candidate Process: 17.
+[Process: 6]	[O]	Captured by Candidate Process: 13.
+[Process: 12]	[O]	Captured by Candidate Process: 17.
+[Process: 5]	[O]	Captured by Candidate Process: 10.
+[Process: 1]	[O]	Captured by Candidate Process: 13.
+[Process: 15]	[O]	Captured by Candidate Process: 17.
+[Process: 17]	[O]	Captured by Candidate Process: 8.
+[Process: 20]	[O]	Captured by Candidate Process: 17.
+[Process: 18]	[O]	Captured by Candidate Process: 10.
+[Process: 8]	[C]	Was Killed
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 3]	[O]	Captured by Candidate Process: 17.
+[Process: 4]	[O]	Captured by Candidate Process: 17.
+[Process: 6]	[C]	Was Killed
+[Process: 8]	[O]	Captured by Candidate Process: 17.
+[Process: 13]	[C]	Was Killed
+[Process: 6]	[O]	Captured by Candidate Process: 17.
+[Process: 13]	[C]	Received a kill Message, but was already killed.
+[Process: 9]	[O]	Captured by Candidate Process: 17.
+[Process: 18]	[C]	Is now a Candidate.
+[Process: 12]	[C]	Is now a Candidate.
+[Process: 14]	[O]	Captured by Candidate Process: 17.
+[Process: 10]	[O]	Captured by Candidate Process: 17.
+[Process: 20]	[C]	Is now a Candidate.
+[Process: 1]	[O]	Captured by Candidate Process: 17.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 13]	[C]	Received a kill Message, but was already killed.
+[Process: 15]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 2]	[O]	Captured by Candidate Process: 15.
+[Process: 16]	[O]	Captured by Candidate Process: 17.
+[Process: 10]	[C]	Was Killed
+[Process: 5]	[O]	Captured by Candidate Process: 17.
+[Process: 10]	[C]	Received a kill Message, but was already killed.
+[Process: 11]	[O]	Captured by Candidate Process: 17.
+[Process: 16]	[C]	Was Killed
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 2]	[O]	Captured by Candidate Process: 17.
+[Process: 19]	[C]	Is now a Candidate.
+[Process: 15]	[C]	Was Killed
+[Process: 13]	[O]	Captured by Candidate Process: 17.
+[Process: 18]	[O]	Captured by Candidate Process: 17.
+[Process: 10]	[C]	Received a kill Message, but was already killed.
+[Process: 7]	[O]	Captured by Candidate Process: 17.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 17]	[C]	Elected!! 
+[Process: 1]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 2]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 3]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 4]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 5]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 6]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 7]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 8]	[C]	Level = 3.	Times Captured = 2.	Acks = 3.
+[Process: 9]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 10]	[C]	Level = 4.	Times Captured = 1.	Acks = 6.
+[Process: 11]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
+[Process: 12]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 13]	[C]	Level = 4.	Times Captured = 1.	Acks = 6.
+[Process: 14]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 15]	[C]	Level = 2.	Times Captured = 1.	Acks = 2.
+[Process: 16]	[C]	Level = 2.	Times Captured = 2.	Acks = 2.
+[Process: 17]	[C]	Level = 20.	Times Captured = 1.	Acks = 19.
+[Process: 18]	[C]	Level = 1.	Times Captured = 3.	Acks = 0.
+[Process: 19]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[Process: 20]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
+[INFO]		[ ]	Level Sum - Number of Processes = 30.	Captures Sum = 30.	Total Kills = 10	Total Acks = 40.
+Total number of Messages: 93
+Ignored Capture attempts: 0

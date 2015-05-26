@@ -40,7 +40,7 @@ public class CandidateThread implements Runnable {
 	public void run() {
 		/* Wait up to 5 seconds */
 		try {
-			Thread.sleep((long)(Math.random() * 1000));
+			Thread.sleep((long)(Math.random() * 5000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -140,7 +140,7 @@ public class CandidateThread implements Runnable {
 						killed = true;
 					}else{
 						myLevel++;
-						//count ++;
+						count ++;
 					}
 				}
 			}
@@ -190,6 +190,7 @@ public class CandidateThread implements Runnable {
 		Init.totalA = Init.totalA + aux;
 		Init.totalC = Init.totalC + count;
 		Init.totalK = Init.totalK + kills;
+		Init.totalM = Init.totalM + aux +  kills + Init.O[me.getId()-1].captured + Init.O[me.getId()-1].missedCapture;
 		if(me.getId() == Init.NumberOfProcesses){
 			try {
 				Thread.sleep(500);
@@ -198,7 +199,8 @@ public class CandidateThread implements Runnable {
 			}
 			rn = Init.Lsum - Init.NumberOfProcesses;
 			System.out.println("[INFO]\t\t[ ]\tLevel Sum - Number of Processes = " + rn+ ".\tCaptures Sum = " + Init.Csum + ".\tTotal Kills = " + Init.totalK + "\tTotal Acks = " + Init.totalA + ".");
-			System.out.println("Missed captures: " + Init.totalC);
+			System.out.println("Total number of Messages: " + Init.totalM);
+			System.out.println("Ignored Capture attempts: " + Init.totalC);
 		}
 	}
 
