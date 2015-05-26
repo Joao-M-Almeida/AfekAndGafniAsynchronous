@@ -46,7 +46,7 @@
 \textbf{[Process: 5]}	[C]	Received a kill Message, but was already killed.
 \textbf{[Process: 1]}	[O]	Captured by Candidate Process: 4.
 \textbf{[Process: 5]}	[C]	Received a kill Message, but was already killed.
-\textbf{[Process: 4]}	[C]	Elected!! 
+\textcolor{red}{\textbf{[Process: 4]}	[C]	Elected!} 
 \textbf{[Process: 1]}	[C]	Level = 1.  Times Captured = 2.   Acks = 0.
 \textbf{[Process: 2]}	[C]	Level = 2.  Times Captured = 2.   Acks = 1.
 \textbf{[Process: 3]}	[C]	Level = 1.  Times Captured = 1.   Acks = 0.
@@ -76,148 +76,151 @@
 	\vspace{10pt}
 	
 	\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8},frame=single,label=Test 6 output]
-	
-INFO]	  	Connections Ready
-[Process: 35]	[C]	Is now a Candidate.
-[Process: 25]	[C]	Is now a Candidate.
-[Process: 7]	 [O]	Captured by Candidate Process: 35.
-[Process: 17]	[O]	Captured by Candidate Process: 25.
-[Process: 18]	[O]	Captured by Candidate Process: 35.
-[Process: 46]	[O]	Captured by Candidate Process: 25.
-[Process: 47]	[O]	Captured by Candidate Process: 35.
-[Process: 49]	[O]	Captured by Candidate Process: 25.
-[Process: 50]	[O]	Captured by Candidate Process: 35.
-[Process: 37]	[O]	Captured by Candidate Process: 25.
-[Process: 42]	[O]	Captured by Candidate Process: 35.
-[Process: 35]	[O]	Captured by Candidate Process: 25.
-[Process: 44]	[O]	Captured by Candidate Process: 35.
-[Process: 23]	[O]	Captured by Candidate Process: 25.
-[Process: 11]	[O]	Captured by Candidate Process: 35.
-[Process: 36]	[O]	Captured by Candidate Process: 25.
-[Process: 40]	[O]	Captured by Candidate Process: 25.
-[Process: 49]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Was Killed
-[Process: 41]	[O]	Captured by Candidate Process: 35.
-[Process: 12]	[O]	Captured by Candidate Process: 35.
-[Process: 19]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Is now a Candidate.
-[Process: 20]	[O]	Captured by Candidate Process: 35.
-[Process: 27]	[O]	Captured by Candidate Process: 48.
-[Process: 31]	[O]	Captured by Candidate Process: 48.
-[Process: 37]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 32]	[O]	Captured by Candidate Process: 48.
-[Process: 33]	[O]	Captured by Candidate Process: 35.
-[Process: 16]	[O]	Captured by Candidate Process: 48.
-[Process: 1]	 [O]	Captured by Candidate Process: 35.
-[Process: 13]	[O]	Captured by Candidate Process: 48.
-[Process: 37]	[C]	Is now a Candidate.
-[Process: 10]	[O]	Captured by Candidate Process: 35.
-[Process: 26]	[O]	Captured by Candidate Process: 48.
-[Process: 5]	 [O]	Captured by Candidate Process: 48.
-[Process: 34]	[O]	Captured by Candidate Process: 35.
-[Process: 9]	 [O]	Captured by Candidate Process: 48.
-[Process: 5]	 [O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Was Killed
-[Process: 14]	[O]	Captured by Candidate Process: 35.
-[Process: 32]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 13]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 4]	 [O]	Captured by Candidate Process: 35.
-[Process: 45]	[O]	Captured by Candidate Process: 35.
-[Process: 17]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 31]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 40]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 29]	[O]	Captured by Candidate Process: 35.
-[Process: 3]	 [O]	Captured by Candidate Process: 35.
-[Process: 38]	[O]	Captured by Candidate Process: 35.
-[Process: 26]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 48]	[O]	Captured by Candidate Process: 35.
-[Process: 2]	 [O]	Captured by Candidate Process: 35.
-[Process: 15]	[O]	Captured by Candidate Process: 35.
-[Process: 6]	 [O]	Captured by Candidate Process: 35.
-[Process: 8]	 [O]	Captured by Candidate Process: 35.
-[Process: 28]	[O]	Captured by Candidate Process: 35.
-[Process: 28]	[C]	Is now a Candidate.
-[Process: 27]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 25]	[O]	Captured by Candidate Process: 35.
-[Process: 21]	[O]	Captured by Candidate Process: 35.
-[Process: 22]	[O]	Captured by Candidate Process: 35.
-[Process: 46]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 39]	[O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 16]	[O]	Captured by Candidate Process: 35.
-[Process: 36]	[O]	Captured by Candidate Process: 35.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 9]	 [O]	Captured by Candidate Process: 35.
-[Process: 48]	[C]	Received a kill Message, but was already killed.
-[Process: 30]	[O]	Captured by Candidate Process: 35.
-[Process: 43]	[O]	Captured by Candidate Process: 35.
-[Process: 24]	[O]	Captured by Candidate Process: 35.
-[Process: 19]	[C]	Is now a Candidate.
-[Process: 25]	[C]	Received a kill Message, but was already killed.
-[Process: 23]	[O]	Captured by Candidate Process: 35.
-[Process: 35]	[C]	Elected!! 
-[Process: 1]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 2]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 3]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 4]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 5]	 [C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 6]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 7]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 8]	 [C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 9]	 [C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 10]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 11]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 12]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 13]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 14]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 15]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 16]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 17]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 18]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 19]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 20]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 21]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 22]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 23]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 24]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 25]	[C]	Level = 9.	Times Captured = 1.	Acks = 14.
-[Process: 26]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 27]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 28]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 29]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 30]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 31]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 32]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 33]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 34]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 35]	[C]	Level = 50.	Times Captured = 1.	Acks = 49.
-[Process: 36]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 37]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 38]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 39]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 40]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 41]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 42]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 43]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 44]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 45]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 46]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 47]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[Process: 48]	[C]	Level = 9.	Times Captured = 1.	Acks = 16.
-[Process: 49]	[C]	Level = 1.	Times Captured = 2.	Acks = 0.
-[Process: 50]	[C]	Level = 1.	Times Captured = 1.	Acks = 0.
-[INFO]		[ ]	Level Sum - Number of Processes = 65.	Captures Sum = 65.	Total Kills = 15	Total Acks = 79.
-Total number of Messages: 163
-Ignored Capture attempts: 1
+\textbf{[INFO]}	  	Connections Ready
+\textbf{[Process: 35]}	[C]	Is now a Candidate.
+\textbf{[Process: 25]}	[C]	Is now a Candidate.
+\textbf{[Process: 7]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 17]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 18]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 46]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 47]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 49]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 50]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 37]	}[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 42]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 35]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 44]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 23]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 11]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 36]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 40]}	[O]	Captured by Candidate Process: 25.
+\textbf{[Process: 49]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Was Killed
+\textbf{[Process: 41]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 12]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 19]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Is now a Candidate.
+\textbf{[Process: 20]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 27]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 31]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 37]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 32]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 33]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 16]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 1]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 13]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 37]}	[C]	Is now a Candidate.
+\textbf{[Process: 10]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 26]}	[O]	Captured by Candidate Process: 48.
+\textbf{[Process: 5]}	 [O]	Captured by Candidate Process: 48.
+\textbf{[Process: 34]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 9]}	 [O]	Captured by Candidate Process: 48.
+\textbf{[Process: 5]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Was Killed
+\textbf{[Process: 14]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 32]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 13]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 4]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 45]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 17]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 31]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 40]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 29]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 3]	} [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 38]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 26]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 48]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 2]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 15]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 6]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 8]}	 [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 28]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 28]}	[C]	Is now a Candidate.
+\textbf{[Process: 27]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 25]	}[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 21]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 22]	}[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 46]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 39]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 16]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 36]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 9]	} [O]	Captured by Candidate Process: 35.
+\textbf{[Process: 48]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 30]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 43]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 24]}	[O]	Captured by Candidate Process: 35.
+\textbf{[Process: 19]}	[C]	Is now a Candidate.
+\textbf{[Process: 25]}	[C]	Received a kill Message, but was already killed.
+\textbf{[Process: 23]}	[O]	Captured by Candidate Process: 35.
+\textcolor{red}{\textbf{[Process: 35]}	[C]	Elected!} 
+\textbf{[Process: 1]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 2]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 3]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 4]	} [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 5]}	 [C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 6]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 7]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 8]}	 [C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 9]}	 [C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 10]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 11]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 12]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 13]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 14]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 15]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 16]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 17]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 18]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 19]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 20]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 21]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 22]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 23]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 24]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 25]}	[C]  Level = 9.  Times Captured = 1.  Acks = 14.
+\textbf{[Process: 26]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 27]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 28]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 29]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 30]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 31]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 32]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 33]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 34]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 35]}	[C]  Level = 50.  Times Captured = 1. Acks = 49.
+\textbf{[Process: 36]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 37]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 38]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 39]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 40]	}[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 41]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 42]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 43]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 44]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 45]	}[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 46]	}[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 47]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[Process: 48]}	[C]  Level = 9.  Times Captured = 1.  Acks = 16.
+\textbf{[Process: 49]}	[C]  Level = 1.  Times Captured = 2.  Acks = 0.
+\textbf{[Process: 50]}	[C]  Level = 1.  Times Captured = 1.  Acks = 0.
+\textbf{[INFO]}		
+\textbf{Level Sum - Number of Processes =} 65.	
+\textbf{Captures Sum = }65.	
+\textbf{Total Kills =} 15	
+\textbf{Total Acks =} 79.
+\textbf{Total number of Messages =} 163.
+\textbf{Unsynchronized Captures =} 1.
 	
 	\end{Verbatim}
 
