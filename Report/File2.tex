@@ -1,0 +1,84 @@
+\section*{Detailed Tests}		
+
+	\vspace{10pt}
+
+	\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8},frame=single,label=Test 1 output]
+[INFO]	  	Connections Ready
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 2]	[O]	Captured by Candidate Process: 1.
+\textcolor{red}{[Process: 1]	[C]	Elected!!} 
+[Process: 1]	[C]	Level = 2. Times Captured = 0. Acks = 1.
+[Process: 2]	[C]	Level = 1. Times Captured = 1. Acks = 0.
+[INFO]		
+Level Sum - Number of Processes = 1.	
+Captures Sum = 1	
+Total Kills = 0	
+Total Acks = 1
+Missed captures: 0
+	\end{Verbatim}
+
+	\vspace{10pt}
+
+	In this example , \textit{Test 1}, two processes are trying to get elected. Process 1 is the first candidate and captures Process 2 immediately, making itself the elected process. The '\textit{Level Sum - Number of Processes}' is equal to the '\textit{Captures Sum}', which proves the correctness of the algorithm for two processes.
+
+	\vspace{10pt}
+	
+	\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8},frame=single,label=Test 4 output]
+[INFO]	  			Connections Ready
+[Process: 9]	[C]	Is now a Candidate.
+[Process: 1]	[C]	Is now a Candidate.
+[Process: 7]	[C]	Is now a Candidate.
+[Process: 5]	[C]	Is now a Candidate.
+[Process: 4]	[C]	Is now a Candidate.
+[Process: 2]	[C]	Is now a Candidate.
+[Process: 8]	[C]	Is now a Candidate.
+[Process: 3]	[C]	Is now a Candidate.
+[Process: 10]       [C]	Is now a Candidate.
+[Process: 6]	[C]	Is now a Candidate.
+[Process: 5]	[O]	Captured by Candidate Process: 4.
+[Process: 8]	[O]	Captured by Candidate Process: 1.
+[Process: 9]	[O]	Captured by Candidate Process: 2.
+[Process: 2]	[O]	Captured by Candidate Process: 5.
+[Process: 4]	[O]	Captured by Candidate Process: 9.
+[Process: 6]	[O]	Captured by Candidate Process: 7.
+[Process: 3]	[O]	Captured by Candidate Process: 4.
+[Process: 10]       [O]	Captured by Candidate Process: 7.
+[Process: 1]	[O]	Captured by Candidate Process: 2.
+[Process: 1]	[C]	Was Killed
+[Process: 1]	[C]	Received a kill Message, but was already killed.
+[Process: 8]	[O]	Captured by Candidate Process: 7.
+[Process: 1]	[C]	Received a kill Message, but was already killed.
+[Process: 1]	[O]	Captured by Candidate Process: 7.
+[Process: 2]	[C]	Was Killed
+[Process: 5]	[O]	Captured by Candidate Process: 7.
+[Process: 4]	[C]	Was Killed
+[Process: 2]	[O]	Captured by Candidate Process: 7.
+[Process: 5]	[C]	Was Killed
+[Process: 9]	[O]	Captured by Candidate Process: 7.
+[Process: 2]	[C]	Received a kill Message, but was already killed.
+[Process: 4]	[O]	Captured by Candidate Process: 7.
+[Process: 9]	[C]	Was Killed
+[Process: 3]	[O]	Captured by Candidate Process: 7.
+[Process: 4]	[C]	Received a kill Message, but was already killed.
+\textcolor{red}{[Process: 7]	[C]	Elected!!}
+[Process: 1]	[C]	Level = 2. Times Captured = 2. Acks = 4.
+[Process: 2]	[C]	Level = 3. Times Captured = 2. Acks = 4.
+[Process: 3]	[C]	Level = 1. Times Captured = 2. Acks = 0.
+[Process: 4]	[C]	Level = 3. Times Captured = 2. Acks = 4.
+[Process: 5]	[C]	Level = 2. Times Captured = 2. Acks = 2.
+[Process: 6]	[C]	Level = 1. Times Captured = 1. Acks = 0.
+[Process: 7]	[C]	Level = 10. Times Captured = 0. Acks = 9.
+[Process: 8]	[C]	Level = 1. Times Captured = 2. Acks = 0.
+[Process: 9]	[C]	Level = 2. Times Captured = 2. Acks = 2.
+[Process: 10]       [C]	Level = 1. Times Captured = 1. Acks = 0.
+[INFO]		
+Level Sum - Number of Processes = 16	
+Captures Sum = 16
+Total Kills = 9	
+Total Acks = 25
+Missed captures: 0
+	\end{Verbatim}
+
+	\vspace{10pt}
+
+	With this example from \textit{Test 4} we want to prove that even if all candidates start the election at the same time, the algorithm still works as expected.
