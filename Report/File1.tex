@@ -2,17 +2,17 @@
 
 	\vspace{10pt}
 
-	\indent To guarantee the quality of our implementation we ran multiple tests and a summary of those tests is present in Table \ref{tab:testtable}. To ensure the algorithm was implemented correctly, information regarding the state of the processes was printed during the execution of the algorithm. Some of these tests are explained in the section \textit{Detailed Tests} with their respective output.
+	\indent To guarantee the quality of our implementation we ran multiple tests, a summary of those tests is present in Table \ref{tab:testtable}. To ensure the algorithm was implemented correctly, information regarding the state of the processes was printed during the execution of the algorithm. All these tests are explained in the section \textit{Detailed Tests}.
 
 	For each test we measured a series of parameters to evaluate the output of the algorithm. The parameters are:
 
 	\begin{itemize}
 		\item{\textbf{Number of Level Increases:}} Sum of the \textit{Levels} of all processes at the end of execution. 
+		\item{\textbf{Number of Messages:}} Number of all messages of the implementation.
 		\item{\textbf{Number of Captures:}} Number of \textit{Captures} that were successful, measured by the ordinary processes.
 		\item{\textbf{Number of Kill messages:}} Number of messages sent by ordinary processes to \textit{Kill} their previous owner.
 		\item{\textbf{Number of Acknowledgment messages:}} Number of \textit{Acknowledgment} messages sent for each \textit{kill} or \textit{Capture} messages.
-		\item{\textbf{Number of Messages:}} Number of all messages of the implementation.
-		\item{\textbf{Number of Capture/Level Discrepancies:}} The difference between the number of \textit{Captures} and number of \textit{Level Increases} due to synchronization issues.
+		\item{\textbf{Number of Capture/Level Discrepancies:}} The difference between the number of \textit{Captures} and number of \textit{Level Increases}.
 
 	\end{itemize}
 
@@ -24,7 +24,7 @@
 		Test \# & \# Machines & Total \# Processes & \#Level increases & \# Captures & \# Kills & \# Acks & \# Messages & \begin{tabular}[c]{@{}c@{}}\#Capture/Level \\ Discrepancies\end{tabular} \\ \hline
 		1 & 1 & 2 & 1 & 1 & 0 & 1 & 2 & 0 \\ \hline
 		2 & 1 & 5 & 4 & 4 & 0 & 4 & 8 & 0 \\ \hline
-		3 & 2 & 10 & 9 & 9 & 0 & 9 & 18 & 0 \\ \hline
+		3 & 2 & 10 & 17 & 17 & 7 & 24 & & 0 \\ \hline
 		4 & 1 & 10 & 13 & 13 & 3 & 16 & 33 & 0 \\ \hline
 		5 & 1 & 20 & 30 & 30 & 10 & 40 & 93 & 0 \\ \hline
 		6 & 1 & 50 & 65 & 65 & 15 & 79 & 163 & 1 \\ \hline
@@ -37,7 +37,7 @@
 		\caption{Tests summary}\label{tab:testtable}
 	\end{table}
 
-	As you can see there is a difference between the number of \textit{Captures} and the \textit{Level Increases}, for the larger tests. Theoretically these should be the same, however due to a known problem of synchronization, some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
-
+	In theory the formula $\#ACKS = \#KILLS+\#CAPTURES$ should be respected for all runs of the algorithm, however for larger tests there is a discrepancy in this formula. This results from a known problem of synchronization, some of these captures do not result in a level increase for the candidate because it is killed before receiving the acknowledgment. This acknowledgment arrives later, however it is ignored, as the candidate is already dead. So this way the number of acknowledgments respects: $\#ACKS = \#KILLS+\#CAPTURES-\#DISCREPANCIES$.
+	
 	\newpage
 
