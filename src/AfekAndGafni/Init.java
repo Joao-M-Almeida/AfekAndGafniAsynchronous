@@ -22,7 +22,8 @@ public class Init {
 	public static int totalC;
 	public static int totalK;
 	public static int totalA;
-	
+	public static int totalM;
+ 	
 	public static boolean DEBUG;
 	public static boolean ElectionOver;
 	
