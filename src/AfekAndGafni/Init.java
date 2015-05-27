@@ -11,7 +11,6 @@ public class Init {
 	public static String[] IPs;
 	public static Registry[] registry;
 	public static AfekAndGafniRMI[] stub;
-	//public static int Process_Number;
 	public static int MachineNumber;
 	public static int NumberOfMachines;
 	public static int NumberOfProcesses;
@@ -28,10 +27,12 @@ public class Init {
 	public static boolean ElectionOver;
 	
 	public static OrdinaryThread[] O; // Contains a pointer to the thread of each process on this machine. Process 1 on index 0
-	public static CandidateThread[] C;
+	public static CandidateThread[] C; 
 	public static boolean[] requested;
 	public static Integer Lsum = 0;
 	public static Integer Csum = 0;
+	
+	// counters for the test runs
 	
 	public synchronized static void lCounter(Integer num){
 		Lsum  = Lsum + num;
@@ -40,6 +41,7 @@ public class Init {
 		Csum  = Csum + num;
 	}
 	
+	// Creates and starts the threads with the ordinary processes
 	public static void createOThread(){
 		int i,aux_int;
 		Thread ot;
@@ -66,7 +68,7 @@ public class Init {
 		
 		DEBUG=false;
 		
-		
+		// Parse Inputs
 		NumberOfMachines = Integer.parseInt(args[0]);
 		MachineNumber = Integer.parseInt(args[NumberOfMachines+1]);
 		NumberOfProcesses = Integer.parseInt(args[NumberOfMachines+2])*NumberOfMachines;
@@ -116,6 +118,7 @@ public class Init {
 			if(DEBUG)System.out.println("\nServer Ready");
 			
 			for( i=0 ; i<NumberOfMachines ; i++ ){
+				// Connect to each machine
 				k=0;
 				if(DEBUG)System.out.print("Trying to Connect with " + IPs[i] + " .");
 				while (true) {
@@ -151,19 +154,19 @@ public class Init {
 				
 				k=0;
 				if(DEBUG)System.out.println("Connected to " + IPs[i] + ".");
+				
+				// Bind to the machines
 				if(DEBUG)System.out.print("Trying to Bind with " + IPs[i] + " .");
 				for(z=0 ; z<NumberOfProcessesPerMachine ; z++){
 					while( true ){
 						st=0;
 						try{
-							// Para cada máquina, cria o stub para cada um dos processos.
+							// For each machine creates a stub
 							st = (i+1)*NumberOfProcessesPerMachine - NumberOfProcessesPerMachine + z + 1;
 							stub[st-1] = (AfekAndGafniRMI) registry[i].lookup("rmi://localhost:1099/Process" + st);
 							if(DEBUG)System.out.printf("\nBinded with rmi://localhost:1099/Process" + st);
 						} catch (RemoteException estub) {
 							failed_lookup = true;
-							//System.out.println(st);
-							//estub.printStackTrace();
 						} catch (Exception E){
 							E.printStackTrace();	
 							failed_lookup = true;
@@ -197,7 +200,7 @@ public class Init {
 		
 			System.out.println("[INFO]\t  \tConnections Ready");
 			
-			
+			// For each process starts the Candidate Thread
 			ProcessID id_g;
 			int aux_int;
 			for(i=0 ; i<NumberOfProcessesPerMachine ; i++ ){

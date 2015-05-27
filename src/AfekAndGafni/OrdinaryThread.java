@@ -32,6 +32,8 @@ public class OrdinaryThread implements Runnable {
 		Integer LevelAux;
 		ProcessID IdAux;
 		ProcessID LinkAux;
+		
+		// Waits for connections to be ready
 		while(!Init.ConnectionsReady){
 			try {
 				Thread.sleep(100);
@@ -50,19 +52,23 @@ public class OrdinaryThread implements Runnable {
 				IdAux = this.RemoveElementId();
 				LinkAux = this.LinkList.remove(0);
 
+				
 				if( LevelAux < OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() < Owner_Id.getId() ) ){
 					/* if (level', id') < (level, id) */
+					// Capture atempt faies
 					/* Ignore */
 					missedCapture ++;
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t" + "Ignoring received Message.");
 				}else if( LevelAux > OrdinaryLevel || ( LevelAux == OrdinaryLevel && IdAux.getId() > Owner_Id.getId() ) ){
 					/* if (level', id') > (level, id) */
+					// Larger than our current owner
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') > (level, owner-id). Message received: (" + LevelAux + "," + IdAux.getId()  + ").");
 					PotencialOwner = LinkAux;
 					/* (level, owner-id) = (level', id') */
 					OrdinaryLevel = LevelAux;
 					Owner_Id = IdAux;
 					if(Owner == null){
+						// We didn't have a owner
 						Owner = PotencialOwner;
 						OwnerLink = PotencialOwner;
 						System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tCaptured by Candidate " + Owner_Id + ".");
@@ -73,6 +79,8 @@ public class OrdinaryThread implements Runnable {
 
 				}else if( LevelAux == OrdinaryLevel && IdAux.getId() == Owner_Id.getId() ){
 					/* if (level', id') = (level, id) */
+					// confirmed capture
+					// previous owner killed
 					if(Init.DEBUG)System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\t(level', id') = (level, owner-id). Message received: (" + IdAux.getId() + "," + LevelAux + ").");
 					Owner = PotencialOwner;
 					OwnerLink = PotencialOwner;
@@ -99,6 +107,7 @@ public class OrdinaryThread implements Runnable {
 		return;
 	}
 
+	
 	public synchronized void receiveOrdinaryMessage(int level, ProcessID id, ProcessID link) {
 		if(Init.DEBUG) System.out.println("[Process: " + OrdinaryId.getId() + "]\t[O]\tReceived Message (Level,ID): (" + level + "," +id.getId() + ")." );
 		this.LevelList.add(level);
