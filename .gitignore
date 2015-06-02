@@ -4,6 +4,7 @@ p186-afek.pdf
 .project
 .class
 
+*.zip
 Report/report.pdf
 
 ############# LATEX GITIGNORE #################
